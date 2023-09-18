@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ConfigValueWrapper<T extends Serializable> implements Serializable {
+public class ConfigValueWrapper<T> implements Serializable {
 
     private static final long serialVersionUID = -661606423607667512L;
 

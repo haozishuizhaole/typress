@@ -8,8 +8,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
 /**
  * 配置
  *
@@ -31,7 +29,7 @@ public class Config implements Entity<ConfigName> {
     /**
      * 配置值
      */
-    private ConfigValueWrapper<? extends Serializable> configValue;
+    private ConfigValueWrapper<?> configValue;
 
     /**
      * 创建时间
