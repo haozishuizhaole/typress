@@ -13,7 +13,7 @@ import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.po.ConfigPO;
 import java.util.List;
 
 /**
- * 基于SQLite的持久化层实现
+ * 基于SQLite的配置持久化层实现
  *
  * @author chenzhihao
  * @date 2023-09-15 15:42

@@ -21,3 +21,6 @@ mybatis:
     mapper-locations: "classpath:/mybatis/mapper/mysql/*.xml,classpath:/mybatis/mapper/mysql/*/*.xml"
     mapper-base-packages: "cc.chenzhihao.typress.core.infrastructure.persistence.mysql.mapper"
     
+typress:
+    persistence:
+        type: "mysql"
