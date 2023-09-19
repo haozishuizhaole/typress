@@ -69,7 +69,7 @@ public class ConfigPersistenceConvertor {
         });
         Object value = configValue.getValue();
         if (value instanceof JSONObject) {
-            configValue.setValue(((JSONObject) value).toJavaObject(configName.getClass()));
+            configValue.setValue(((JSONObject) value).toJavaObject(configName.getValueType()));
         } else if (value instanceof JSONArray) {
             configValue.setValue(((JSONArray) value).toJavaList(configName.getClass()));
         }

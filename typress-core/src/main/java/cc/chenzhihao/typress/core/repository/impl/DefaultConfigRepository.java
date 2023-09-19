@@ -91,20 +91,19 @@ public class DefaultConfigRepository implements ConfigRepository {
      * 获取配置值
      *
      * @param configName 配置名
-     * @param clz        配置值类型
      * @param <T>        配置值类型
      * @return 配置值
      * @throws RepositoryException 资源库异常
      */
-    private <T> T getConfigValue(ConfigName configName, Class<T> clz) throws RepositoryException {
+    private <T> T getConfigValue(ConfigName configName) throws RepositoryException {
         Config config = getById(configName);
         if (Objects.isNull(config)) {
             return null;
         }
         try {
-            return config.getConfigValue(clz);
+            return (T) config.getConfigValue(configName.getValueType());
         } catch (Exception e) {
-            throw new RepositoryException(String.format("case configValue type to %s failed, configValue type is %s", clz.toString(), config.getConfigValue().getValue().getClass().toString()));
+            throw new RepositoryException(String.format("case configValue type to %s failed, configValue type is %s", configName.getValueType().toString(), config.getConfigValue().getValue().getClass().toString()));
         }
     }
 
@@ -122,7 +121,7 @@ public class DefaultConfigRepository implements ConfigRepository {
 
     @Override
     public SiteInfoConfigValue getSiteInfoConfig() throws RepositoryException {
-        return getConfigValue(ConfigName.SITE_INFO, SiteInfoConfigValue.class);
+        return getConfigValue(ConfigName.SITE_INFO);
     }
 
     @Override
