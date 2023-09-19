@@ -5,7 +5,10 @@ import cc.chenzhihao.typress.core.domain.exception.base.PersistenceException;
 import cc.chenzhihao.typress.core.domain.exception.base.RepositoryException;
 import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ConfigPersistence;
 import cc.chenzhihao.typress.core.domain.model.entity.Config;
+import cc.chenzhihao.typress.core.domain.model.vo.Timestamp;
 import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigName;
+import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigValueWrapper;
+import cc.chenzhihao.typress.core.domain.model.vo.config.SiteInfoConfigValue;
 import cc.chenzhihao.typress.core.domain.repository.ConfigRepository;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -37,6 +40,12 @@ public class DefaultConfigRepository implements ConfigRepository {
 
         // 新增
         if (Objects.isNull(existConfig)) {
+            if (Objects.isNull(entity.getCreateTime())) {
+                entity.setCreateTime(new Timestamp());
+            }
+            if (Objects.isNull(entity.getUpdateTime())) {
+                entity.setUpdateTime(new Timestamp());
+            }
             try {
                 configPersistence.create(entity);
             } catch (PersistenceException e) {
@@ -48,6 +57,8 @@ public class DefaultConfigRepository implements ConfigRepository {
         // 更新
         ConfigCondition condition = new ConfigCondition();
         condition.createCriteria().configNameEqualTo(entity.getConfigName());
+        entity.setConfigName(null);
+        entity.setCreateTime(null);
         try {
             configPersistence.updateByConditionSelective(entity, condition);
         } catch (PersistenceException e) {
@@ -74,5 +85,48 @@ public class DefaultConfigRepository implements ConfigRepository {
             return null;
         }
         return configs.get(0);
+    }
+
+    /**
+     * 获取配置值
+     *
+     * @param configName 配置名
+     * @param clz        配置值类型
+     * @param <T>        配置值类型
+     * @return 配置值
+     * @throws RepositoryException 资源库异常
+     */
+    private <T> T getConfigValue(ConfigName configName, Class<T> clz) throws RepositoryException {
+        Config config = getById(configName);
+        if (Objects.isNull(config)) {
+            return null;
+        }
+        try {
+            return config.getConfigValue(clz);
+        } catch (Exception e) {
+            throw new RepositoryException(String.format("case configValue type to %s failed, configValue type is %s", clz.toString(), config.getConfigValue().getValue().getClass().toString()));
+        }
+    }
+
+    /**
+     * 保存配置值
+     *
+     * @param configName  配置名
+     * @param configValue 配置值
+     * @param <T>         配置值类型
+     * @throws RepositoryException 资源库异常
+     */
+    private <T> void saveConfigValue(ConfigName configName, T configValue) throws RepositoryException {
+        save(new Config(configName, new ConfigValueWrapper<>(configValue)));
+    }
+
+    @Override
+    public SiteInfoConfigValue getSiteInfoConfig() throws RepositoryException {
+        return getConfigValue(ConfigName.SITE_INFO, SiteInfoConfigValue.class);
+    }
+
+    @Override
+    public void setSiteInfoConfig(SiteInfoConfigValue configValue) throws RepositoryException {
+        saveConfigValue(ConfigName.SITE_INFO, configValue);
     }
 }

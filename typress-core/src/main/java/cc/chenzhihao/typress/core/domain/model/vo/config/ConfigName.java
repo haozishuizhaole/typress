@@ -13,20 +13,7 @@ public enum ConfigName implements Identity<ConfigName> {
     /**
      * 站点信息
      */
-    SITE_INFO(SiteInfoConfigValue.class);
-
-    /**
-     * 配置值类型
-     */
-    private final Class<?> valueType;
-
-    ConfigName(Class<?> valueType) {
-        this.valueType = valueType;
-    }
-
-    public Class<?> getValueType() {
-        return valueType;
-    }
+    SITE_INFO;
 
     @Override
     public ConfigName getId() {

@@ -41,9 +41,17 @@ public class Config implements Entity<ConfigName> {
      */
     private Timestamp updateTime;
 
+    public Config(ConfigName configName, ConfigValueWrapper<?> configValue) {
+        this(configName, configValue, new Timestamp(), new Timestamp());
+    }
+
     @Override
     public ConfigName getId() {
         return configName;
+    }
+
+    public <U> U getConfigValue(Class<U> clz) {
+        return clz.cast(configValue.getValue());
     }
 
 }
