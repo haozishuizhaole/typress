@@ -1,6 +1,7 @@
 package cc.chenzhihao.typress.core.domain.model.vo.article;
 
 import cc.chenzhihao.typress.core.domain.model.vo.ID;
+import lombok.NonNull;
 
 import java.time.Instant;
 
@@ -13,6 +14,13 @@ import java.time.Instant;
 public class ArticleId extends ID<Long> {
 
     private static final long serialVersionUID = 4206333533624518864L;
+
+    public ArticleId() {
+    }
+
+    public ArticleId(@NonNull Long id) {
+        super(id);
+    }
 
     @Override
     protected Long generate() {
