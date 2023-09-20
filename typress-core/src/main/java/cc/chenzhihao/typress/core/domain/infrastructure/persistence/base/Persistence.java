@@ -21,7 +21,9 @@ public interface Persistence<I extends Identity<?>, E extends Entity<I>, C exten
      *
      * @throws PersistenceException 持久化层操作失败
      */
-    void create(E entity) throws PersistenceException;
+    default void create(E entity) throws PersistenceException {
+        throw new UnsupportedOperationException("not implements");
+    }
 
     /**
      * 按条件修改实体，字段可选
@@ -31,7 +33,9 @@ public interface Persistence<I extends Identity<?>, E extends Entity<I>, C exten
      * @return 受影响的记录条数
      * @throws PersistenceException 持久化层操作失败
      */
-    int updateByConditionSelective(E entityData, C condition) throws PersistenceException;
+    default int updateByConditionSelective(E entityData, C condition) throws PersistenceException {
+        throw new UnsupportedOperationException("not implements");
+    }
 
     /**
      * 查找符合条件的实体
@@ -40,7 +44,9 @@ public interface Persistence<I extends Identity<?>, E extends Entity<I>, C exten
      * @return 实体列表
      * @throws PersistenceException 持久化层操作失败
      */
-    List<E> findByCondition(C condition) throws PersistenceException;
+    default List<E> findByCondition(C condition) throws PersistenceException {
+        throw new UnsupportedOperationException("not implements");
+    }
 
     /**
      * 查询符合条件的实体条数
@@ -49,5 +55,17 @@ public interface Persistence<I extends Identity<?>, E extends Entity<I>, C exten
      * @return 符合条件的实体数
      * @throws PersistenceException 持久化层操作失败
      */
-    long countByCondition(C condition) throws PersistenceException;
+    default long countByCondition(C condition) throws PersistenceException {
+        throw new UnsupportedOperationException("not implements");
+    }
+
+    /**
+     * 根据实体ID删除实体
+     *
+     * @param identity 实体ID
+     * @throws PersistenceException 持久化层操作失败
+     */
+    default void delete(I identity) throws PersistenceException {
+        throw new UnsupportedOperationException("not implements");
+    }
 }

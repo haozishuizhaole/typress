@@ -1,5 +1,6 @@
 package cc.chenzhihao.typress.core.domain.condition.base;
 
+import cc.chenzhihao.typress.core.domain.model.entity.Article;
 import cc.chenzhihao.typress.core.domain.model.entity.Config;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,6 +43,7 @@ public class ConditionGenerator {
     public static void main(String[] args) {
         String packageName = "cc.chenzhihao.typress.core.domain.condition";
         ConditionGenerator.of("src/main/java", packageName, Collections.singletonList(Config.class)).generate();
+        ConditionGenerator.of("src/main/java", packageName, Collections.singletonList(Article.class)).generate();
     }
 
     public void generate() {
