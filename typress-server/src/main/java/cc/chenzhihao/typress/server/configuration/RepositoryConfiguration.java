@@ -1,7 +1,10 @@
 package cc.chenzhihao.typress.server.configuration;
 
+import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ArticlePersistence;
 import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ConfigPersistence;
+import cc.chenzhihao.typress.core.domain.repository.ArticleRepository;
 import cc.chenzhihao.typress.core.domain.repository.ConfigRepository;
+import cc.chenzhihao.typress.core.repository.impl.DefaultArticleRepository;
 import cc.chenzhihao.typress.core.repository.impl.DefaultConfigRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,4 +23,8 @@ public class RepositoryConfiguration {
         return new DefaultConfigRepository(configPersistence);
     }
 
+    @Bean
+    public ArticleRepository articleRepository(ArticlePersistence articlePersistence) {
+        return new DefaultArticleRepository(articlePersistence);
+    }
 }

@@ -1,8 +1,11 @@
 package cc.chenzhihao.typress.server.configuration;
 
+import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ArticlePersistence;
 import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ConfigPersistence;
 import cc.chenzhihao.typress.core.infrastructure.persistence.mysql.MySQLConfigPersistence;
+import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.SqLiteArticlePersistence;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.SqLiteConfigPersistence;
+import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.mapper.ext.ArticlePOExtMapper;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,4 +31,9 @@ public class PersistenceConfiguration {
         return new MySQLConfigPersistence();
     }
 
+    @Bean(name = "articlePersistence")
+    @ConditionalOnProperty(prefix = "typress.persistence", name = "type", havingValue = "sqlite")
+    public ArticlePersistence sqliteArticlePersistence(ArticlePOExtMapper articlePOExtMapper) {
+        return new SqLiteArticlePersistence(articlePOExtMapper);
+    }
 }

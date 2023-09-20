@@ -1,7 +1,10 @@
 package cc.chenzhihao.typress.server.configuration;
 
+import cc.chenzhihao.typress.core.business.usecase.ArticleUseCases;
 import cc.chenzhihao.typress.core.business.usecase.ConfigUseCases;
+import cc.chenzhihao.typress.core.business.usecase.impl.ArticleUseCasesImpl;
 import cc.chenzhihao.typress.core.business.usecase.impl.ConfigUseCasesImpl;
+import cc.chenzhihao.typress.core.domain.repository.ArticleRepository;
 import cc.chenzhihao.typress.core.domain.repository.ConfigRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,5 +21,10 @@ public class UseCasesConfiguration {
     @Bean
     public ConfigUseCases configUseCases(ConfigRepository configRepository) {
         return new ConfigUseCasesImpl(configRepository);
+    }
+
+    @Bean
+    public ArticleUseCases articleUseCases(ArticleRepository articleRepository) {
+        return new ArticleUseCasesImpl(articleRepository);
     }
 }
