@@ -17,6 +17,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.Collections;
@@ -117,7 +118,9 @@ public class ConfigPersistenceConvertor {
 
     }
 
-    @Mapper
+    @Mapper(
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
+    )
     interface ConfigMapper {
         @Mappings({
                 @Mapping(target = "id", ignore = true),

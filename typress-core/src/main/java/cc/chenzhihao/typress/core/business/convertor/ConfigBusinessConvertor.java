@@ -4,6 +4,7 @@ import cc.chenzhihao.typress.core.business.dto.GetSiteInfoConfigResponseDTO;
 import cc.chenzhihao.typress.core.business.dto.SetSiteInfoConfigRequestDTO;
 import cc.chenzhihao.typress.core.domain.model.vo.config.SiteInfoConfigValue;
 import org.mapstruct.Mapper;
+import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.factory.Mappers;
 
 /**
@@ -24,7 +25,9 @@ public class ConfigBusinessConvertor {
         return MAPPER.convertSetSiteInfoConfigRequestDTOToSiteInfoConfigValue(source);
     }
 
-    @Mapper
+    @Mapper(
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
+    )
     interface ConfigMapper {
 
         GetSiteInfoConfigResponseDTO convertSiteInfoConfigValueToGetSiteInfoConfigResponseDTO(SiteInfoConfigValue source);

@@ -12,7 +12,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.NullValueMappingStrategy;
+import org.mapstruct.NullValueCheckStrategy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.Collections;
@@ -85,7 +85,7 @@ public class ArticlePersistenceConvertor {
 
     @Mapper(
             imports = {ArticleDomainConvertor.class, CommonDomainConvertor.class},
-            nullValueMappingStrategy = NullValueMappingStrategy.RETURN_NULL
+            nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
     )
     interface ArticleMapper extends ArticleDomainConvertor, CommonDomainConvertor {
 
