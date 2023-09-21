@@ -5,6 +5,7 @@ import cc.chenzhihao.typress.core.domain.exception.base.PersistenceException;
 import cc.chenzhihao.typress.core.domain.exception.base.RepositoryException;
 import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ArticlePersistence;
 import cc.chenzhihao.typress.core.domain.model.entity.Article;
+import cc.chenzhihao.typress.core.domain.model.vo.Timestamp;
 import cc.chenzhihao.typress.core.domain.model.vo.article.ArticleId;
 import cc.chenzhihao.typress.core.domain.repository.ArticleRepository;
 import org.apache.commons.collections4.CollectionUtils;
@@ -28,15 +29,13 @@ public class DefaultArticleRepository implements ArticleRepository {
 
     @Override
     public void save(Article entity) throws RepositoryException {
-        Article existEntity;
-        try {
-            existEntity = getByArticleIdFromPersistence(entity.getArticleId());
-        } catch (PersistenceException e) {
-            throw new RepositoryException("get article by articleId condition failed.", e);
-        }
-
-        if (Objects.isNull(existEntity)) {
+        Timestamp now = new Timestamp();
+        ArticleId articleId = entity.getArticleId();
+        if (Objects.isNull(articleId)) {
             // 新增
+            entity.setArticleId(new ArticleId());
+            entity.setCreateTime(now);
+            entity.setUpdateTime(now);
             try {
                 articlePersistence.create(entity);
             } catch (PersistenceException e) {
@@ -46,10 +45,9 @@ public class DefaultArticleRepository implements ArticleRepository {
         }
 
         // 更新
-        entity.setArticleId(null);
-        entity.setCreateTime(null);
         ArticleCondition updateCondition = new ArticleCondition();
         updateCondition.createCriteria().articleIdEqualTo(entity.getArticleId());
+        entity.setUpdateTime(now);
         try {
             articlePersistence.updateByConditionSelective(entity, updateCondition);
         } catch (PersistenceException e) {

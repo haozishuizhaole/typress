@@ -16,6 +16,15 @@ import java.util.Objects;
 @Mapper
 public interface CommonDomainConvertor {
 
+    interface Expressions {
+        String CURRENT_TIMESTAMP = "java(currentTimestamp())";
+    }
+
+    @Named("currentTimestamp")
+    default Timestamp currentTimestamp() {
+        return new Timestamp();
+    }
+
     @Named("convertTimestampToLong")
     default Long convertTimestampToLong(Timestamp source) {
         if (Objects.isNull(source)) {
@@ -46,6 +55,14 @@ public interface CommonDomainConvertor {
             return null;
         }
         return source.getOriginalText();
+    }
+
+    @Named("convertOriginalTextStringToMarkdownText")
+    default MarkdownText convertOriginalTextStringToMarkdownText(String originalText) {
+        if (Objects.isNull(originalText)) {
+            return null;
+        }
+        return new MarkdownText(originalText);
     }
 
 }

@@ -1,6 +1,8 @@
 package cc.chenzhihao.typress.core.business.usecase;
 
 import cc.chenzhihao.typress.core.business.dto.GetArticleInfoResponseDTO;
+import cc.chenzhihao.typress.core.business.dto.SaveArticleInfoRequestDTO;
+import cc.chenzhihao.typress.core.business.dto.SaveArticleInfoResponseDTO;
 
 /**
  * 文章用例
@@ -17,4 +19,12 @@ public interface ArticleUseCases {
      * @return 返回结果
      */
     GetArticleInfoResponseDTO getArticleInfo(Long articleId);
+
+    /**
+     * 保存文章信息
+     *
+     * @param request 文章信息
+     * @return 返回结果
+     */
+    SaveArticleInfoResponseDTO saveArticleInfo(SaveArticleInfoRequestDTO request);
 }

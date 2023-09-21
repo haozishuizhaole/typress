@@ -1,6 +1,7 @@
 package cc.chenzhihao.typress.core.business.convertor;
 
 import cc.chenzhihao.typress.core.business.dto.GetArticleInfoResponseDTO;
+import cc.chenzhihao.typress.core.business.dto.SaveArticleInfoRequestDTO;
 import cc.chenzhihao.typress.core.domain.component.convertor.ArticleDomainConvertor;
 import cc.chenzhihao.typress.core.domain.component.convertor.CommonDomainConvertor;
 import cc.chenzhihao.typress.core.domain.model.entity.Article;
@@ -24,6 +25,10 @@ public class ArticleBusinessConvertor {
         return MAPPER.convertArticleToGetArticleInfoResponseDTO(source);
     }
 
+    public static Article convertSaveArticleInfoRequestDTOToArticle(SaveArticleInfoRequestDTO source) {
+        return MAPPER.convertSaveArticleInfoRequestDTOToArticle(source);
+    }
+
     @Mapper(
             imports = {ArticleDomainConvertor.class, CommonDomainConvertor.class},
             nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
@@ -38,5 +43,10 @@ public class ArticleBusinessConvertor {
         })
         GetArticleInfoResponseDTO convertArticleToGetArticleInfoResponseDTO(Article source);
 
+        @Mappings({
+                @Mapping(target = "articleId", source = "articleId", qualifiedByName = "convertLongToArticleId"),
+                @Mapping(target = "articleContent", source = "articleContent", qualifiedByName = "convertOriginalTextStringToMarkdownText"),
+        })
+        Article convertSaveArticleInfoRequestDTOToArticle(SaveArticleInfoRequestDTO source);
     }
 }
