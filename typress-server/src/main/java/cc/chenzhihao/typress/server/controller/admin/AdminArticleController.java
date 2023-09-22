@@ -52,4 +52,13 @@ public class AdminArticleController {
     public Result<SaveArticleInfoResponseDTO> saveArticleInfo(@RequestBody SaveArticleInfoRequestDTO request) {
         return ResultUtil.success(articleUseCases.saveArticleInfo(request));
     }
+
+    /**
+     * 删除文章
+     */
+    @PostMapping("deleteArticle")
+    public Result<?> deleteArticle(@RequestParam("articleId") Long articleId) {
+        articleUseCases.deleteArticle(articleId);
+        return ResultUtil.success();
+    }
 }

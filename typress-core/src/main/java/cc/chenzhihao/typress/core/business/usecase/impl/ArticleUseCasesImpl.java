@@ -89,4 +89,13 @@ public class ArticleUseCasesImpl implements ArticleUseCases {
         // 组装数据
         return ArticleBusinessConvertor.assembleFindArticlesResponseDTO(totalCount, articleAbstractInfos);
     }
+
+    @Override
+    public void deleteArticle(Long articleId) {
+        try {
+            articleRepository.delete(new ArticleId(articleId));
+        } catch (RepositoryException e) {
+            throw new BusinessException("delete article by articleId failed", e);
+        }
+    }
 }

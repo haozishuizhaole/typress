@@ -37,4 +37,11 @@ public interface ArticleUseCases {
      * @return 响应
      */
     FindArticlesResponseDTO findArticles(FindArticlesRequestDTO request);
+
+    /**
+     * 删除文章
+     *
+     * @param articleId 文章ID
+     */
+    void deleteArticle(Long articleId);
 }
