@@ -6,6 +6,7 @@ import cc.chenzhihao.typress.core.domain.exception.base.RepositoryException;
 import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ArticlePersistence;
 import cc.chenzhihao.typress.core.domain.model.entity.Article;
 import cc.chenzhihao.typress.core.domain.model.vo.Timestamp;
+import cc.chenzhihao.typress.core.domain.model.vo.article.ArticleAbstractInfo;
 import cc.chenzhihao.typress.core.domain.model.vo.article.ArticleId;
 import cc.chenzhihao.typress.core.domain.repository.ArticleRepository;
 import org.apache.commons.collections4.CollectionUtils;
@@ -100,5 +101,14 @@ public class DefaultArticleRepository implements ArticleRepository {
             return null;
         }
         return configs.get(0);
+    }
+
+    @Override
+    public List<ArticleAbstractInfo> getArticleAbstractInfoByCondition(ArticleCondition condition) throws RepositoryException {
+        try {
+            return articlePersistence.findArticleAbstractInfoByCondition(condition);
+        } catch (PersistenceException e) {
+            throw new RepositoryException("find article abstract info by condition failed", e);
+        }
     }
 }

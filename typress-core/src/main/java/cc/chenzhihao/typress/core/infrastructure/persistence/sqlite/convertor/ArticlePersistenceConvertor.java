@@ -5,9 +5,11 @@ import cc.chenzhihao.typress.core.domain.component.convertor.CommonDomainConvert
 import cc.chenzhihao.typress.core.domain.condition.ArticleCondition;
 import cc.chenzhihao.typress.core.domain.condition.base.Pageable;
 import cc.chenzhihao.typress.core.domain.model.entity.Article;
+import cc.chenzhihao.typress.core.domain.model.vo.article.ArticleAbstractInfo;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.example.ArticlePOExample;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.example.ext.ArticlePOExtExample;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.po.ArticlePO;
+import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.po.ext.ArticleAbstractInfoExtPO;
 import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,6 +19,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -83,6 +86,18 @@ public class ArticlePersistenceConvertor {
 
     }
 
+    public static List<ArticleAbstractInfo> convertArticleAbstractInfoExtPOsToArticleAbstractInfos(List<ArticleAbstractInfoExtPO> source) {
+        if (CollectionUtils.isEmpty(source)) {
+            return Collections.emptyList();
+        }
+        return source.stream().map(ArticlePersistenceConvertor::convertArticleAbstractInfoExtPOToArticleAbstractInfo)
+                .filter(Objects::nonNull).collect(Collectors.toList());
+    }
+
+    private static ArticleAbstractInfo convertArticleAbstractInfoExtPOToArticleAbstractInfo(ArticleAbstractInfoExtPO source) {
+        return MAPPER.convertArticleAbstractInfoExtPOToArticleAbstractInfo(source);
+    }
+
     @Mapper(
             imports = {ArticleDomainConvertor.class, CommonDomainConvertor.class},
             nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS
@@ -106,5 +121,12 @@ public class ArticlePersistenceConvertor {
                 @Mapping(target = "updateTime", source = "updateTime", qualifiedByName = "convertLongToTimestamp")
         })
         Article convertArticlePOToArticle(ArticlePO source);
+
+        @Mappings({
+                @Mapping(target = "articleId", source = "articleId", qualifiedByName = "convertLongToArticleId"),
+                @Mapping(target = "createTime", source = "createTime", qualifiedByName = "convertLongToTimestamp"),
+                @Mapping(target = "updateTime", source = "updateTime", qualifiedByName = "convertLongToTimestamp")
+        })
+        ArticleAbstractInfo convertArticleAbstractInfoExtPOToArticleAbstractInfo(ArticleAbstractInfoExtPO source);
     }
 }

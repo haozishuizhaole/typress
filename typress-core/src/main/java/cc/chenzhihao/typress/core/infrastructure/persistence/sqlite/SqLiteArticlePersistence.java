@@ -4,11 +4,13 @@ import cc.chenzhihao.typress.core.domain.condition.ArticleCondition;
 import cc.chenzhihao.typress.core.domain.exception.base.PersistenceException;
 import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ArticlePersistence;
 import cc.chenzhihao.typress.core.domain.model.entity.Article;
+import cc.chenzhihao.typress.core.domain.model.vo.article.ArticleAbstractInfo;
 import cc.chenzhihao.typress.core.domain.model.vo.article.ArticleId;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.convertor.ArticlePersistenceConvertor;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.example.ext.ArticlePOExtExample;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.mapper.ext.ArticlePOExtMapper;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.po.ArticlePO;
+import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.po.ext.ArticleAbstractInfoExtPO;
 
 import java.util.List;
 
@@ -80,5 +82,17 @@ public class SqLiteArticlePersistence implements ArticlePersistence {
         } catch (Exception e) {
             throw new PersistenceException("execute ArticlePOExtMapper#deleteByExample error", e);
         }
+    }
+
+    @Override
+    public List<ArticleAbstractInfo> findArticleAbstractInfoByCondition(ArticleCondition condition) throws PersistenceException {
+        ArticlePOExtExample example = ArticlePersistenceConvertor.convertArticleConditionToArticlePOExtExample(condition);
+        List<ArticleAbstractInfoExtPO> pos;
+        try {
+            pos = mapper.selectArticleAbstractInfoByExtExample(example);
+        } catch (Exception e) {
+            throw new PersistenceException("execute ArticlePOExtMapper#selectArticleAbstractInfoByExtExample error", e);
+        }
+        return ArticlePersistenceConvertor.convertArticleAbstractInfoExtPOsToArticleAbstractInfos(pos);
     }
 }
