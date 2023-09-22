@@ -6,6 +6,7 @@ import cc.chenzhihao.typress.core.domain.exception.base.RepositoryException;
 import cc.chenzhihao.typress.core.domain.infrastructure.persistence.ConfigPersistence;
 import cc.chenzhihao.typress.core.domain.model.entity.Config;
 import cc.chenzhihao.typress.core.domain.model.vo.Timestamp;
+import cc.chenzhihao.typress.core.domain.model.vo.config.AdministratorConfigValue;
 import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigName;
 import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigValueWrapper;
 import cc.chenzhihao.typress.core.domain.model.vo.config.SiteInfoConfigValue;
@@ -127,5 +128,15 @@ public class DefaultConfigRepository implements ConfigRepository {
     @Override
     public void setSiteInfoConfig(SiteInfoConfigValue configValue) throws RepositoryException {
         saveConfigValue(ConfigName.SITE_INFO, configValue);
+    }
+
+    @Override
+    public AdministratorConfigValue getAdministratorConfig() throws RepositoryException {
+        return getConfigValue(ConfigName.ADMINISTRATOR);
+    }
+
+    @Override
+    public void setAdministratorConfig(AdministratorConfigValue configValue) throws RepositoryException {
+        saveConfigValue(ConfigName.ADMINISTRATOR, configValue);
     }
 }

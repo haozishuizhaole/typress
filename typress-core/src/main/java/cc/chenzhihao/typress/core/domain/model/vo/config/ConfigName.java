@@ -13,7 +13,12 @@ public enum ConfigName implements Identity<ConfigName> {
     /**
      * 站点信息
      */
-    SITE_INFO(SiteInfoConfigValue.class);
+    SITE_INFO(SiteInfoConfigValue.class),
+
+    /**
+     * 管理员配置
+     */
+    ADMINISTRATOR(AdministratorConfigValue.class);
 
     /**
      * 配置值类型
