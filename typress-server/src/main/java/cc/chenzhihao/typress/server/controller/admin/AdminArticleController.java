@@ -1,5 +1,7 @@
 package cc.chenzhihao.typress.server.controller.admin;
 
+import cc.chenzhihao.typress.core.business.dto.FindArticlesRequestDTO;
+import cc.chenzhihao.typress.core.business.dto.FindArticlesResponseDTO;
 import cc.chenzhihao.typress.core.business.dto.GetArticleInfoResponseDTO;
 import cc.chenzhihao.typress.core.business.dto.SaveArticleInfoRequestDTO;
 import cc.chenzhihao.typress.core.business.dto.SaveArticleInfoResponseDTO;
@@ -26,6 +28,14 @@ public class AdminArticleController {
 
     @Resource
     private ArticleUseCases articleUseCases;
+
+    /**
+     * 查询文章列表
+     */
+    @PostMapping("findArticles")
+    public Result<FindArticlesResponseDTO> findArticles(@RequestBody FindArticlesRequestDTO request) {
+        return ResultUtil.success(articleUseCases.findArticles(request));
+    }
 
     /**
      * 获取文章信息
