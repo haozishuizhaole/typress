@@ -27,7 +27,7 @@ public class SqLiteConfigPersistence implements ConfigPersistence {
     }
 
     @Override
-    public void create(Config entity) throws PersistenceException {
+    public void create(Config<?> entity) throws PersistenceException {
         ConfigPO po = ConfigPersistenceConvertor.convertConfigToConfigPO(entity);
         try {
             mapper.insert(po);
@@ -37,7 +37,7 @@ public class SqLiteConfigPersistence implements ConfigPersistence {
     }
 
     @Override
-    public int updateByConditionSelective(Config entityData, ConfigCondition condition) throws PersistenceException {
+    public int updateByConditionSelective(Config<?> entityData, ConfigCondition condition) throws PersistenceException {
         ConfigPO data = ConfigPersistenceConvertor.convertConfigToConfigPOSelective(entityData);
         ConfigPOExample example = ConfigPersistenceConvertor.convertConfigConditionToConfigPOExample(condition);
         try {
@@ -48,7 +48,7 @@ public class SqLiteConfigPersistence implements ConfigPersistence {
     }
 
     @Override
-    public List<Config> findByCondition(ConfigCondition condition) throws PersistenceException {
+    public List<Config<?>> findByCondition(ConfigCondition condition) throws PersistenceException {
         ConfigPOExtExample queryCondition = ConfigPersistenceConvertor.convertConfigConditionToConfigPOExtExample(condition);
         List<ConfigPO> queryResult;
         try {

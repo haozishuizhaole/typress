@@ -16,17 +16,17 @@ import java.util.List;
 public class MySQLConfigPersistence implements ConfigPersistence {
 
     @Override
-    public void create(Config entity) throws PersistenceException {
+    public void create(Config<?> entity) throws PersistenceException {
 
     }
 
     @Override
-    public int updateByConditionSelective(Config entityData, ConfigCondition condition) throws PersistenceException {
+    public int updateByConditionSelective(Config<?> entityData, ConfigCondition condition) throws PersistenceException {
         return 0;
     }
 
     @Override
-    public List<Config> findByCondition(ConfigCondition condition) throws PersistenceException {
+    public List<Config<?>> findByCondition(ConfigCondition condition) throws PersistenceException {
         return null;
     }
 

@@ -14,7 +14,7 @@ import cc.chenzhihao.typress.core.domain.repository.base.Repository;
  * @author chenzhihao
  * @date 2023-09-15 14:22
  */
-public interface ConfigRepository extends Repository<ConfigName, Config, ConfigCondition> {
+public interface ConfigRepository extends Repository<ConfigName, Config<?>, ConfigCondition> {
 
     /**
      * 获取站点信息配置

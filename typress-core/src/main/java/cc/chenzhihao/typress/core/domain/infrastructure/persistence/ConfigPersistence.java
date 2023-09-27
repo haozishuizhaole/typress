@@ -11,5 +11,5 @@ import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigName;
  * @author chenzhihao
  * @date 2023-09-15 15:18
  */
-public interface ConfigPersistence extends Persistence<ConfigName, Config, ConfigCondition> {
+public interface ConfigPersistence extends Persistence<ConfigName, Config<?>, ConfigCondition> {
 }

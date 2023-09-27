@@ -8,7 +8,6 @@ import cc.chenzhihao.typress.core.domain.model.entity.Config;
 import cc.chenzhihao.typress.core.domain.model.vo.Timestamp;
 import cc.chenzhihao.typress.core.domain.model.vo.config.AdministratorConfigValue;
 import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigName;
-import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigValueWrapper;
 import cc.chenzhihao.typress.core.domain.model.vo.config.SiteInfoConfigValue;
 import cc.chenzhihao.typress.core.domain.repository.ConfigRepository;
 import org.apache.commons.collections4.CollectionUtils;
@@ -31,8 +30,8 @@ public class DefaultConfigRepository implements ConfigRepository {
     }
 
     @Override
-    public void save(Config entity) throws RepositoryException {
-        Config existConfig;
+    public void save(Config<?> entity) throws RepositoryException {
+        Config<?> existConfig;
         try {
             existConfig = getByConfigKeyFromPersistence(entity.getConfigName());
         } catch (PersistenceException e) {
@@ -68,8 +67,8 @@ public class DefaultConfigRepository implements ConfigRepository {
     }
 
     @Override
-    public Config getById(ConfigName id) throws RepositoryException {
-        Config config;
+    public Config<?> getById(ConfigName id) throws RepositoryException {
+        Config<?> config;
         try {
             config = getByConfigKeyFromPersistence(id);
         } catch (PersistenceException e) {
@@ -78,10 +77,10 @@ public class DefaultConfigRepository implements ConfigRepository {
         return config;
     }
 
-    private Config getByConfigKeyFromPersistence(ConfigName configName) throws PersistenceException {
+    private Config<?> getByConfigKeyFromPersistence(ConfigName configName) throws PersistenceException {
         ConfigCondition condition = new ConfigCondition();
         condition.createCriteria().configNameEqualTo(configName);
-        List<Config> configs = configPersistence.findByCondition(condition);
+        List<Config<?>> configs = configPersistence.findByCondition(condition);
         if (CollectionUtils.isEmpty(configs)) {
             return null;
         }
@@ -97,14 +96,14 @@ public class DefaultConfigRepository implements ConfigRepository {
      * @throws RepositoryException 资源库异常
      */
     private <T> T getConfigValue(ConfigName configName) throws RepositoryException {
-        Config config = getById(configName);
+        Config<?> config = getById(configName);
         if (Objects.isNull(config)) {
             return null;
         }
         try {
-            return (T) config.getConfigValue(configName.getValueType());
+            return (T) config.getConfigValue();
         } catch (Exception e) {
-            throw new RepositoryException(String.format("case configValue type to %s failed, configValue type is %s", configName.getValueType().toString(), config.getConfigValue().getValue().getClass().toString()));
+            throw new RepositoryException(String.format("case configValue type to %s failed, configValue type is %s", configName.getValueType().toString(), config.getConfigValue().getClass().toString()));
         }
     }
 
@@ -117,7 +116,7 @@ public class DefaultConfigRepository implements ConfigRepository {
      * @throws RepositoryException 资源库异常
      */
     private <T> void saveConfigValue(ConfigName configName, T configValue) throws RepositoryException {
-        save(new Config(configName, new ConfigValueWrapper<>(configValue)));
+        save(new Config<>(configName, configValue));
     }
 
     @Override

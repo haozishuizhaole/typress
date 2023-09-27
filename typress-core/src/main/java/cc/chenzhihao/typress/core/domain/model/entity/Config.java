@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class Config implements Entity<ConfigName> {
+public class Config<T> implements Entity<ConfigName> {
 
     private static final long serialVersionUID = 7677558025805241599L;
 
@@ -27,7 +27,7 @@ public class Config implements Entity<ConfigName> {
     /**
      * 配置值
      */
-    private ConfigValueWrapper<?> configValue;
+    private T configValue;
 
     /**
      * 创建时间
@@ -39,14 +39,14 @@ public class Config implements Entity<ConfigName> {
      */
     private Timestamp updateTime;
 
-    public Config(ConfigName configName, ConfigValueWrapper<?> configValue) {
+    public Config(ConfigName configName, T configValue) {
         this(configName, configValue, new Timestamp(), new Timestamp());
     }
 
-    public Config(ConfigName configName, ConfigValueWrapper<?> configValue, Timestamp createTime, Timestamp updateTime) {
-        if (!configName.getValueType().isAssignableFrom(configValue.getValue().getClass())) {
-            throw new RuntimeException(String.format("configValue class type must be %s", configName.getValueType().toString()));
-        }
+    public Config(ConfigName configName, T configValue, Timestamp createTime, Timestamp updateTime) {
+        // if (!configName.getValueType().isAssignableFrom(configValue.getValue().getClass())) {
+        //     throw new RuntimeException(String.format("configValue class type must be %s", configName.getValueType().toString()));
+        // }
         this.configName = configName;
         this.configValue = configValue;
         this.createTime = createTime;
@@ -56,10 +56,6 @@ public class Config implements Entity<ConfigName> {
     @Override
     public ConfigName getId() {
         return configName;
-    }
-
-    public <U> U getConfigValue(Class<U> clz) {
-        return clz.cast(configValue.getValue());
     }
 
 }

@@ -2,6 +2,8 @@ package cc.chenzhihao.typress.core.domain.model.vo.config;
 
 import cc.chenzhihao.typress.core.domain.model.vo.Identity;
 
+import java.lang.reflect.Type;
+
 /**
  * 配置名称
  *
@@ -23,9 +25,9 @@ public enum ConfigName implements Identity<ConfigName> {
     /**
      * 配置值类型
      */
-    private Class<?> valueType;
+    private final Type valueType;
 
-    ConfigName(Class<?> valueType) {
+    ConfigName(Type valueType) {
         this.valueType = valueType;
     }
 
@@ -34,7 +36,7 @@ public enum ConfigName implements Identity<ConfigName> {
         return this;
     }
 
-    public Class<?> getValueType() {
+    public Type getValueType() {
         return valueType;
     }
 }
