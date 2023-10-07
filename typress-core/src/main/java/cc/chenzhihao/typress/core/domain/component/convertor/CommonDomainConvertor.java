@@ -1,6 +1,7 @@
 package cc.chenzhihao.typress.core.domain.component.convertor;
 
 import cc.chenzhihao.typress.core.domain.model.vo.MarkdownText;
+import cc.chenzhihao.typress.core.domain.model.vo.Password;
 import cc.chenzhihao.typress.core.domain.model.vo.Timestamp;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;
@@ -63,6 +64,14 @@ public interface CommonDomainConvertor {
             return null;
         }
         return new MarkdownText(originalText);
+    }
+
+    @Named("convertOriginalPasswordStringToPasswordWithEncode")
+    default Password convertOriginalPasswordStringToPasswordWithEncode(String originalPassword) {
+        if (Objects.isNull(originalPassword)) {
+            return null;
+        }
+        return new Password(originalPassword, true);
     }
 
 }

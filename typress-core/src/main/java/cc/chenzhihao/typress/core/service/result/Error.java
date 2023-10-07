@@ -1,4 +1,4 @@
-package cc.chenzhihao.typress.core.business.result;
+package cc.chenzhihao.typress.core.service.result;
 
 /**
  * 通用错误码接口

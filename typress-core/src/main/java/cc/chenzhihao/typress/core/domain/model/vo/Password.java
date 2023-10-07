@@ -25,9 +25,10 @@ public class Password implements Serializable {
      * 构建密码
      *
      * @param originPassword 明文密码
+     * @param isEncode       是否加密
      */
-    public Password(String originPassword) {
-        this.value = encode(originPassword);
+    public Password(String originPassword, boolean isEncode) {
+        this.value = isEncode ? encode(originPassword) : originPassword;
     }
 
     /**

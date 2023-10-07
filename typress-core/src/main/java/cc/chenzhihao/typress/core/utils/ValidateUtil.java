@@ -1,14 +1,13 @@
 package cc.chenzhihao.typress.core.utils;
 
 import cc.chenzhihao.typress.core.domain.component.verify.Verifiable;
-import cc.chenzhihao.typress.core.domain.exception.base.ValidateFailedException;
+import cc.chenzhihao.typress.core.domain.exception.ValidateFailedException;
 import org.apache.commons.collections4.CollectionUtils;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.ValidatorFactory;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -43,26 +42,4 @@ public class ValidateUtil {
         }
     }
 
-    /**
-     * 条件成立
-     *
-     * @param condition 判断条件
-     * @param errMsg    条件不成立时的错误信息
-     */
-    public static void isTrue(boolean condition, String errMsg) {
-        if (!condition) {
-            throw new ValidateFailedException(errMsg);
-        }
-    }
-
-    /**
-     * 对象非空
-     *
-     * @param obj    对象
-     * @param errMsg 错误信息
-     * @param <T>    对象类型
-     */
-    public static <T> void nonNull(T obj, String errMsg) {
-        isTrue(Objects.nonNull(obj), errMsg);
-    }
 }

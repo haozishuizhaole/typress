@@ -1,6 +1,6 @@
 package cc.chenzhihao.typress.core.domain.component.verify;
 
-import cc.chenzhihao.typress.core.domain.exception.base.ValidateFailedException;
+import cc.chenzhihao.typress.core.domain.exception.ValidateFailedException;
 
 /**
  * 可验证的
@@ -15,6 +15,6 @@ public interface Verifiable {
      *
      * @throws ValidateFailedException 校验失败抛出异常
      */
-    void validate();
+    void validate() throws ValidateFailedException;
 
 }

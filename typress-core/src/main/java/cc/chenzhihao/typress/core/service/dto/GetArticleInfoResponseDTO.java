@@ -1,4 +1,4 @@
-package cc.chenzhihao.typress.core.business.dto;
+package cc.chenzhihao.typress.core.service.dto;
 
 import lombok.Data;
 

@@ -1,9 +1,9 @@
-package cc.chenzhihao.typress.core.business.convertor;
+package cc.chenzhihao.typress.core.service.convertor;
 
-import cc.chenzhihao.typress.core.business.dto.FindArticlesRequestDTO;
-import cc.chenzhihao.typress.core.business.dto.FindArticlesResponseDTO;
-import cc.chenzhihao.typress.core.business.dto.GetArticleInfoResponseDTO;
-import cc.chenzhihao.typress.core.business.dto.SaveArticleInfoRequestDTO;
+import cc.chenzhihao.typress.core.service.dto.FindArticlesRequestDTO;
+import cc.chenzhihao.typress.core.service.dto.FindArticlesResponseDTO;
+import cc.chenzhihao.typress.core.service.dto.GetArticleInfoResponseDTO;
+import cc.chenzhihao.typress.core.service.dto.SaveArticleInfoRequestDTO;
 import cc.chenzhihao.typress.core.domain.component.convertor.ArticleDomainConvertor;
 import cc.chenzhihao.typress.core.domain.component.convertor.CommonDomainConvertor;
 import cc.chenzhihao.typress.core.domain.condition.ArticleCondition;

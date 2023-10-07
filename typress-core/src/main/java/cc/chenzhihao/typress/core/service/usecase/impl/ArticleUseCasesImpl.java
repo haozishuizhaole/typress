@@ -1,13 +1,13 @@
-package cc.chenzhihao.typress.core.business.usecase.impl;
+package cc.chenzhihao.typress.core.service.usecase.impl;
 
-import cc.chenzhihao.typress.core.business.convertor.ArticleBusinessConvertor;
-import cc.chenzhihao.typress.core.business.dto.FindArticlesRequestDTO;
-import cc.chenzhihao.typress.core.business.dto.FindArticlesResponseDTO;
-import cc.chenzhihao.typress.core.business.dto.GetArticleInfoResponseDTO;
-import cc.chenzhihao.typress.core.business.dto.SaveArticleInfoRequestDTO;
-import cc.chenzhihao.typress.core.business.dto.SaveArticleInfoResponseDTO;
-import cc.chenzhihao.typress.core.business.exception.BusinessException;
-import cc.chenzhihao.typress.core.business.usecase.ArticleUseCases;
+import cc.chenzhihao.typress.core.service.convertor.ArticleBusinessConvertor;
+import cc.chenzhihao.typress.core.service.dto.FindArticlesRequestDTO;
+import cc.chenzhihao.typress.core.service.dto.FindArticlesResponseDTO;
+import cc.chenzhihao.typress.core.service.dto.GetArticleInfoResponseDTO;
+import cc.chenzhihao.typress.core.service.dto.SaveArticleInfoRequestDTO;
+import cc.chenzhihao.typress.core.service.dto.SaveArticleInfoResponseDTO;
+import cc.chenzhihao.typress.core.domain.exception.base.ServiceException;
+import cc.chenzhihao.typress.core.service.usecase.ArticleUseCases;
 import cc.chenzhihao.typress.core.domain.condition.ArticleCondition;
 import cc.chenzhihao.typress.core.domain.exception.base.RepositoryException;
 import cc.chenzhihao.typress.core.domain.model.entity.Article;
@@ -33,19 +33,19 @@ public class ArticleUseCasesImpl implements ArticleUseCases {
     }
 
     @Override
-    public GetArticleInfoResponseDTO getArticleInfo(Long articleId) {
+    public GetArticleInfoResponseDTO getArticleInfo(Long articleId) throws ServiceException {
         Article article;
         try {
             article = articleRepository.getById(new ArticleId(articleId));
         } catch (RepositoryException e) {
-            throw new BusinessException("get article info by articleId failed", e);
+            throw new ServiceException("get article info by articleId failed", e);
         }
 
         return ArticleBusinessConvertor.convertArticleToGetArticleInfoResponseDTO(article);
     }
 
     @Override
-    public SaveArticleInfoResponseDTO saveArticleInfo(SaveArticleInfoRequestDTO request) {
+    public SaveArticleInfoResponseDTO saveArticleInfo(SaveArticleInfoRequestDTO request) throws ServiceException {
         // 参数校验
         ValidateUtil.validate(request);
 
@@ -56,14 +56,14 @@ public class ArticleUseCasesImpl implements ArticleUseCases {
         try {
             articleRepository.save(article);
         } catch (RepositoryException e) {
-            throw new BusinessException("save article failed", e);
+            throw new ServiceException("save article failed", e);
         }
 
         return new SaveArticleInfoResponseDTO(article.getArticleId().getId());
     }
 
     @Override
-    public FindArticlesResponseDTO findArticles(FindArticlesRequestDTO request) {
+    public FindArticlesResponseDTO findArticles(FindArticlesRequestDTO request) throws ServiceException {
         // 参数校验
         ValidateUtil.validate(request);
 
@@ -75,7 +75,7 @@ public class ArticleUseCasesImpl implements ArticleUseCases {
         try {
             totalCount = articleRepository.countByCondition(queryCondition);
         } catch (RepositoryException e) {
-            throw new BusinessException("query article count by condition failed", e);
+            throw new ServiceException("query article count by condition failed", e);
         }
 
         // 查记录
@@ -83,7 +83,7 @@ public class ArticleUseCasesImpl implements ArticleUseCases {
         try {
             articleAbstractInfos = articleRepository.getArticleAbstractInfoByCondition(queryCondition);
         } catch (RepositoryException e) {
-            throw new BusinessException("query article abstract infos by condition failed", e);
+            throw new ServiceException("query article abstract infos by condition failed", e);
         }
 
         // 组装数据
@@ -91,11 +91,11 @@ public class ArticleUseCasesImpl implements ArticleUseCases {
     }
 
     @Override
-    public void deleteArticle(Long articleId) {
+    public void deleteArticle(Long articleId) throws ServiceException {
         try {
             articleRepository.delete(new ArticleId(articleId));
         } catch (RepositoryException e) {
-            throw new BusinessException("delete article by articleId failed", e);
+            throw new ServiceException("delete article by articleId failed", e);
         }
     }
 }

@@ -8,7 +8,7 @@ import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigName;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.example.ConfigPOExample;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.example.ext.ConfigPOExtExample;
 import cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.po.ConfigPO;
-import com.alibaba.fastjson2.JSON;
+import cc.chenzhihao.typress.core.utils.JSONUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -42,7 +42,7 @@ public class ConfigPersistenceConvertor {
 
         ConfigPO target = new ConfigPO();
         Optional.ofNullable(source.getConfigName()).map(ConfigName::name).ifPresent(target::setConfigName);
-        Optional.ofNullable(source.getConfigValue()).map(JSON::toJSONString).ifPresent(target::setConfigValue);
+        Optional.ofNullable(source.getConfigValue()).map(JSONUtil::toJSONString).ifPresent(target::setConfigValue);
         Optional.ofNullable(source.getCreateTime()).map(Timestamp::getValue).ifPresent(target::setCreateTime);
         Optional.ofNullable(source.getUpdateTime()).map(Timestamp::getValue).ifPresent(target::setUpdateTime);
 
@@ -62,16 +62,7 @@ public class ConfigPersistenceConvertor {
         }
 
         ConfigName configName = ConfigName.valueOf(source.getConfigName());
-        // ConfigValueWrapper<Object> configValue = JSON.parseObject(source.getConfigValue(), new TypeReference<ConfigValueWrapper<Object>>() {
-        // });
-        // Object value = configValue.getValue();
-        // if (value instanceof JSONObject) {
-        //     configValue.setValue(((JSONObject) value).toJavaObject(configName.getValueType()));
-        // } else if (value instanceof JSONArray) {
-        //     configValue.setValue(((JSONArray) value).toJavaList(configName.getClass()));
-        // }
-
-        return new Config<>(configName, JSON.parseObject(source.getConfigValue(), configName.getValueType()), new Timestamp(source.getCreateTime()), new Timestamp(source.getUpdateTime()));
+        return new Config<>(configName, JSONUtil.parseObject(source.getConfigValue(), configName.getValueType()), new Timestamp(source.getCreateTime()), new Timestamp(source.getUpdateTime()));
     }
 
     public static ConfigPOExtExample convertConfigConditionToConfigPOExtExample(ConfigCondition source) {
@@ -121,7 +112,7 @@ public class ConfigPersistenceConvertor {
         @Mappings({
                 @Mapping(target = "id", ignore = true),
                 @Mapping(target = "configName", expression = "java(source.getConfigName().name())"),
-                @Mapping(target = "configValue", expression = "java(com.alibaba.fastjson2.JSON.toJSONString(source.getConfigValue()))"),
+                @Mapping(target = "configValue", expression = "java(cc.chenzhihao.typress.core.utils.JSONUtil.toJSONString(source.getConfigValue()))"),
                 @Mapping(target = "createTime", expression = "java(new cc.chenzhihao.typress.core.domain.model.vo.Timestamp().getValue())"),
                 @Mapping(target = "updateTime", expression = "java(new cc.chenzhihao.typress.core.domain.model.vo.Timestamp().getValue())"),
         })

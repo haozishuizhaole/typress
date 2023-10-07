@@ -1,6 +1,6 @@
-package cc.chenzhihao.typress.core.business.dto;
+package cc.chenzhihao.typress.core.service.dto;
 
-import cc.chenzhihao.typress.core.business.dto.base.PageResponseDTO;
+import cc.chenzhihao.typress.core.service.dto.base.PageResponseDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
