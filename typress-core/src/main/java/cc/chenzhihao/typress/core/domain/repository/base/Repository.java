@@ -47,6 +47,17 @@ public interface Repository<I extends Identity<?>, E extends Entity<I>, C extend
     }
 
     /**
+     * ID对应的实体是否存在
+     *
+     * @param id ID
+     * @return true 存在，false 不存在
+     * @throws RepositoryException 资源库异常
+     */
+    default boolean contains(I id) throws RepositoryException {
+        throw new UnsupportedOperationException("not implements");
+    }
+
+    /**
      * 查询符合条件的实体条数
      *
      * @param condition 查询小件

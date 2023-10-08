@@ -42,4 +42,11 @@ public abstract class AbstractMemoryCache<K extends Identity<?>, V extends Entit
         return cache.remove(key);
     }
 
+    @Override
+    public boolean contains(K key) throws CacheException {
+        if (key == null) {
+            return false;
+        }
+        return cache.containsKey(key);
+    }
 }

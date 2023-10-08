@@ -14,7 +14,7 @@ import java.time.Duration;
  * @author chenzhihao
  * @date 2023-10-08 15:55
  */
-public class AbstractMemoryExpirationCache<K extends Identity<?>, V extends Entity<K>> implements Cache<K, V> {
+public abstract class AbstractMemoryExpirationCache<K extends Identity<?>, V extends Entity<K>> implements Cache<K, V> {
 
     /**
      * 缓存过期时间
@@ -69,14 +69,27 @@ public class AbstractMemoryExpirationCache<K extends Identity<?>, V extends Enti
 
     @Override
     public V get(K key) throws CacheException {
+        if (key == null) {
+            throw new CacheException("cache key does not permit null");
+        }
         return cache.getIfPresent(key);
     }
 
     @Override
     public V remove(K key) throws CacheException {
+        if (key == null) {
+            throw new CacheException("cache key does not permit null");
+        }
         V cacheValue = cache.getIfPresent(key);
         cache.invalidate(key);
         return cacheValue;
     }
 
+    @Override
+    public boolean contains(K key) throws CacheException {
+        if (key == null) {
+            return false;
+        }
+        return cache.asMap().containsKey(key);
+    }
 }

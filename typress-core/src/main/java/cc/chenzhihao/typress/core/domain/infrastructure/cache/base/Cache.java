@@ -1,8 +1,8 @@
 package cc.chenzhihao.typress.core.domain.infrastructure.cache.base;
 
+import cc.chenzhihao.typress.core.domain.exception.base.CacheException;
 import cc.chenzhihao.typress.core.domain.model.entity.base.Entity;
 import cc.chenzhihao.typress.core.domain.model.vo.Identity;
-import org.apache.ibatis.cache.CacheException;
 
 /**
  * 缓存接口
@@ -38,4 +38,13 @@ public interface Cache<K extends Identity<?>, V extends Entity<K>> {
      * @throws CacheException 缓存操作失败
      */
     V remove(K key) throws CacheException;
+
+    /**
+     * 键是否存在
+     *
+     * @param key 键
+     * @return true 存在，false 不存在
+     * @throws CacheException 缓存操作失败
+     */
+    boolean contains(K key) throws CacheException;
 }
