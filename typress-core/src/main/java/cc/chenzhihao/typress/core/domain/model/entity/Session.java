@@ -2,6 +2,7 @@ package cc.chenzhihao.typress.core.domain.model.entity;
 
 import cc.chenzhihao.typress.core.domain.model.entity.base.Entity;
 import cc.chenzhihao.typress.core.domain.model.vo.Timestamp;
+import cc.chenzhihao.typress.core.domain.model.vo.session.SessionData;
 import cc.chenzhihao.typress.core.domain.model.vo.session.SessionId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,11 @@ public class Session implements Entity<SessionId> {
      * 会话ID
      */
     private SessionId sessionId;
+
+    /**
+     * 会话数据
+     */
+    private SessionData sessionData;
 
     /**
      * 会话创建时间

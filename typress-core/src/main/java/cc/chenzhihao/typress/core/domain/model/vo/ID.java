@@ -23,6 +23,7 @@ public abstract class ID<T> implements Identity<T> {
     }
 
     public ID(@NonNull T id) {
+        validate(id);
         this.id = id;
     }
 
@@ -31,7 +32,18 @@ public abstract class ID<T> implements Identity<T> {
         return id;
     }
 
+    /**
+     * 生成ID数据
+     *
+     * @return ID数据
+     */
     protected abstract T generate();
+
+    /**
+     * 验证ID合法性
+     */
+    protected void validate(T id) {
+    }
 
     @Override
     public String toString() {

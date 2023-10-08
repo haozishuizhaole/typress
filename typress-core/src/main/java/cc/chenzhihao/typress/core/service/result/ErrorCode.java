@@ -2,6 +2,7 @@ package cc.chenzhihao.typress.core.service.result;
 
 /**
  * 错误码
+ *
  * @author chenzhihao
  * @date 2023-09-18 20:51
  */
