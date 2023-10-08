@@ -26,11 +26,37 @@ public class AbstractMemoryExpirationCache<K extends Identity<?>, V extends Enti
      */
     protected final com.google.common.cache.Cache<K, V> cache;
 
+    /**
+     * 构造缓存，默认写入开始计算过期时间
+     *
+     * @param expireTime 过期时间
+     */
     public AbstractMemoryExpirationCache(Duration expireTime) {
+        this(expireTime, ExpireTimePolicy.EXPIRE_AFTER_WRITE);
+    }
+
+    /**
+     * 构造缓存
+     *
+     * @param expireTime       过期时间
+     * @param expireTimePolicy 过期时间策略
+     */
+    public AbstractMemoryExpirationCache(Duration expireTime, ExpireTimePolicy expireTimePolicy) {
         this.expireTime = expireTime;
-        cache = CacheBuilder.newBuilder()
-                .expireAfterWrite(expireTime)
-                .build();
+        CacheBuilder<Object, Object> cacheBuilder = CacheBuilder.newBuilder();
+
+        switch (expireTimePolicy) {
+            case EXPIRE_AFTER_WRITE:
+                cacheBuilder.expireAfterWrite(expireTime);
+                break;
+            case EXPIRE_AFTER_ACCESS:
+                cacheBuilder.expireAfterAccess(expireTime);
+                break;
+            default:
+                throw new UnsupportedOperationException("unsupported expire time policy");
+        }
+
+        cache = cacheBuilder.build();
     }
 
     @Override
