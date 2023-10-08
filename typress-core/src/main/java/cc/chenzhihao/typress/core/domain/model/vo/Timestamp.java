@@ -1,6 +1,7 @@
 package cc.chenzhihao.typress.core.domain.model.vo;
 
 import lombok.Data;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -12,7 +13,7 @@ import java.time.Instant;
  * @date 2023-09-14 20:30
  */
 @Data
-public class Timestamp implements Serializable {
+public class Timestamp implements Serializable, Comparable<Timestamp> {
 
     private static final long serialVersionUID = 4432620151152577722L;
 
@@ -24,5 +25,10 @@ public class Timestamp implements Serializable {
 
     public Timestamp(long value) {
         this.value = value;
+    }
+
+    @Override
+    public int compareTo(@NotNull Timestamp o) {
+        return (int) (this.value - o.getValue());
     }
 }

@@ -4,7 +4,6 @@ import cc.chenzhihao.typress.core.domain.condition.base.Condition;
 import java.util.List;
 import java.util.ArrayList;
 import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigName;
-import cc.chenzhihao.typress.core.domain.model.vo.config.ConfigValueWrapper;
 import cc.chenzhihao.typress.core.domain.model.vo.Timestamp;
 
 public class ConfigCondition extends Condition {
@@ -40,16 +39,16 @@ public class ConfigCondition extends Condition {
 
 		private Boolean configValueIsNull;
 		private Boolean configValueIsNotNull;
-		private ConfigValueWrapper configValueEqualTo;
-		private ConfigValueWrapper configValueNotEqualTo;
-		private ConfigValueWrapper configValueGreaterThan;
-		private ConfigValueWrapper configValueGreaterThanOrEqualTo;
-		private ConfigValueWrapper configValueLessThan;
-		private ConfigValueWrapper configValueLessThanOrEqualTo;
-		private List<ConfigValueWrapper> configValueIn;
-		private List<ConfigValueWrapper> configValueNotIn;
-		private ConfigValueWrapper[] configValueBetween;
-		private ConfigValueWrapper[] configValueNotBetween;
+		private Object configValueEqualTo;
+		private Object configValueNotEqualTo;
+		private Object configValueGreaterThan;
+		private Object configValueGreaterThanOrEqualTo;
+		private Object configValueLessThan;
+		private Object configValueLessThanOrEqualTo;
+		private List<Object> configValueIn;
+		private List<Object> configValueNotIn;
+		private Object[] configValueBetween;
+		private Object[] configValueNotBetween;
 
 		private Boolean createTimeIsNull;
 		private Boolean createTimeIsNotNull;
@@ -189,84 +188,84 @@ public class ConfigCondition extends Condition {
 			this.configValueIsNotNull = Boolean.TRUE;
 		}
 
-		public ConfigValueWrapper getConfigValueEqualTo() {
+		public Object getConfigValueEqualTo() {
 			return configValueEqualTo;
 		}
 
-		public void configValueEqualTo(ConfigValueWrapper value) {
+		public void configValueEqualTo(Object value) {
 			this.configValueEqualTo = value;
 		}
 
-		public ConfigValueWrapper getConfigValueNotEqualTo() {
+		public Object getConfigValueNotEqualTo() {
 			return configValueNotEqualTo;
 		}
 
-		public void configValueNotEqualTo(ConfigValueWrapper value) {
+		public void configValueNotEqualTo(Object value) {
 			this.configValueNotEqualTo = value;
 		}
 
-		public ConfigValueWrapper getConfigValueGreaterThan() {
+		public Object getConfigValueGreaterThan() {
 			return configValueGreaterThan;
 		}
 
-		public void configValueGreaterThan(ConfigValueWrapper value) {
+		public void configValueGreaterThan(Object value) {
 			this.configValueGreaterThan = value;
 		}
 
-		public ConfigValueWrapper getConfigValueGreaterThanOrEqualTo() {
+		public Object getConfigValueGreaterThanOrEqualTo() {
 			return configValueGreaterThanOrEqualTo;
 		}
 
-		public void configValueGreaterThanOrEqualTo(ConfigValueWrapper value) {
+		public void configValueGreaterThanOrEqualTo(Object value) {
 			this.configValueGreaterThanOrEqualTo = value;
 		}
 
-		public ConfigValueWrapper getConfigValueLessThan() {
+		public Object getConfigValueLessThan() {
 			return configValueLessThan;
 		}
 
-		public void configValueLessThan(ConfigValueWrapper value) {
+		public void configValueLessThan(Object value) {
 			this.configValueLessThan = value;
 		}
 
-		public ConfigValueWrapper getConfigValueLessThanOrEqualTo() {
+		public Object getConfigValueLessThanOrEqualTo() {
 			return configValueLessThanOrEqualTo;
 		}
 
-		public void configValueLessThanOrEqualTo(ConfigValueWrapper value) {
+		public void configValueLessThanOrEqualTo(Object value) {
 			this.configValueLessThanOrEqualTo = value;
 		}
 
-		public List<ConfigValueWrapper> getConfigValueIn() {
+		public List<Object> getConfigValueIn() {
 			return configValueIn;
 		}
 
-		public void configValueIn(List<ConfigValueWrapper> value) {
+		public void configValueIn(List<Object> value) {
 			this.configValueIn = value;
 		}
 
-		public List<ConfigValueWrapper> getConfigValueNotIn() {
+		public List<Object> getConfigValueNotIn() {
 			return configValueNotIn;
 		}
 
-		public void configValueNotIn(List<ConfigValueWrapper> value) {
+		public void configValueNotIn(List<Object> value) {
 			this.configValueNotIn = value;
 		}
 
-		public ConfigValueWrapper[] getConfigValueBetween() {
+		public Object[] getConfigValueBetween() {
 			return configValueBetween;
 		}
 
-		public void configValueBetween(ConfigValueWrapper beginValue, ConfigValueWrapper endValue) {
-			this.configValueBetween = new ConfigValueWrapper[]{beginValue, endValue};
+		public void configValueBetween(Object beginValue, Object endValue) {
+			this.configValueBetween = new Object[]{beginValue, endValue};
 		}
 
-		public ConfigValueWrapper[] getConfigValueNotBetween() {
+		public Object[] getConfigValueNotBetween() {
 			return configValueNotBetween;
 		}
 
-		public void configValueNotBetween(ConfigValueWrapper beginValue, ConfigValueWrapper endValue) {
-			this.configValueNotBetween = new ConfigValueWrapper[]{beginValue, endValue};
+		public void configValueNotBetween(Object beginValue, Object endValue) {
+			this.configValueNotBetween = new Object[]{beginValue, endValue};
 		}
 
 		public Boolean getCreateTimeIsNull() {
