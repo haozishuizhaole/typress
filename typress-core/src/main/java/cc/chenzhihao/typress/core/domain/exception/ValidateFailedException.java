@@ -25,4 +25,8 @@ public class ValidateFailedException extends BusinessException {
     public ValidateFailedException(@NonNull Error error) {
         super(error);
     }
+
+    public ValidateFailedException(@NonNull Error error, String errorMsg) {
+        super(error, errorMsg);
+    }
 }

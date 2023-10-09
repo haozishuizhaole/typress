@@ -38,6 +38,10 @@ public class BusinessException extends RuntimeException {
         this(error.getCode(), error.getMsg());
     }
 
+    public BusinessException(@NonNull Error error, String errorMsg) {
+        this(error.getCode(), errorMsg);
+    }
+
     public String getErrorCode() {
         return errorCode;
     }

@@ -21,6 +21,8 @@ public enum ErrorCode implements Error {
     PARAM_ERROR("A0100", "parameter error"),
     UN_AUTHENTICATION("A0200", "un authentication"),
     AUTHENTICATION_FAILED("A0300", "authentication failed"),
+    UN_SUPPORTED_AUTHENTICATE_CERTIFICATE_TYPE("A0301", "un supported authenticate certificate type"),
+    CERTIFICATE_VALIDATE_FAILED("A0302", "certificate validate failed"),
 
     /**
      * 服务端错误
