@@ -19,10 +19,4 @@ public class LoginOptions {
         return DEFAULT;
     }
 
-    /**
-     * 登录成功后，是否将该用户的其他会话强制下线。true-是，false-否
-     * 默认false，即登录后创建新的会话，该用户在其他设备登录的会话不会强制下线
-     */
-    private Boolean isCloseOtherSession;
-
 }

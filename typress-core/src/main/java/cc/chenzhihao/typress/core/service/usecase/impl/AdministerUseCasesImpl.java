@@ -44,9 +44,7 @@ public class AdministerUseCasesImpl implements AdministerUseCases {
             // 执行认证
             User user = administerAuthenticateService.authenticate(certification);
             // 执行登录
-            Session session = sessionService.login(user, LoginOptions.builder()
-                    .isCloseOtherSession(Boolean.TRUE)
-                    .build());
+            Session session = sessionService.login(user, LoginOptions.getDefault());
             // 返回结果
             return SessionBusinessConvertor.convertSessionAndUserToLoginByPasswordResponseDTO(session, user);
         } catch (AuthenticateException | LoginException e) {
