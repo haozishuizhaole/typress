@@ -1,8 +1,9 @@
 package cc.chenzhihao.typress.server.configuration;
 
 import cc.chenzhihao.typress.core.domain.model.vo.authenticate.Certification;
+import cc.chenzhihao.typress.core.domain.service.authenticate.AdministerAuthenticateService;
 import cc.chenzhihao.typress.core.domain.service.authenticate.handler.AdministerAuthenticateHandler;
-import cc.chenzhihao.typress.core.domain.service.authenticate.impl.AdministerAuthenticateService;
+import cc.chenzhihao.typress.core.domain.service.authenticate.impl.AdministerAuthenticateServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,7 +23,7 @@ public class AuthenticateConfiguration {
      */
     @Bean
     public AdministerAuthenticateService administerAuthenticateService(List<AdministerAuthenticateHandler<? extends Certification>> handlers) {
-        return new AdministerAuthenticateService(handlers);
+        return new AdministerAuthenticateServiceImpl(handlers);
     }
 
 }

@@ -2,6 +2,7 @@ package cc.chenzhihao.typress.core.domain.service.authenticate.impl;
 
 import cc.chenzhihao.typress.core.domain.model.vo.authenticate.Certification;
 import cc.chenzhihao.typress.core.domain.service.authenticate.AbstractAuthenticateService;
+import cc.chenzhihao.typress.core.domain.service.authenticate.AdministerAuthenticateService;
 import cc.chenzhihao.typress.core.domain.service.authenticate.handler.AdministerAuthenticateHandler;
 
 import java.util.List;
@@ -12,9 +13,9 @@ import java.util.List;
  * @author chenzhihao
  * @date 2023-10-09 14:24
  */
-public class AdministerAuthenticateService extends AbstractAuthenticateService {
+public class AdministerAuthenticateServiceImpl extends AbstractAuthenticateService implements AdministerAuthenticateService {
 
-    public AdministerAuthenticateService(List<AdministerAuthenticateHandler<? extends Certification>> handlers) {
+    public AdministerAuthenticateServiceImpl(List<AdministerAuthenticateHandler<? extends Certification>> handlers) {
         super(handlers);
     }
 
