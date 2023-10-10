@@ -1,8 +1,8 @@
 package cc.chenzhihao.typress.server.configuration;
 
 import cc.chenzhihao.typress.core.domain.repository.SessionRepository;
-import cc.chenzhihao.typress.core.domain.service.session.DefaultSessionFactory;
-import cc.chenzhihao.typress.core.domain.service.session.JwtSessionIdGenerator;
+import cc.chenzhihao.typress.core.domain.service.session.impl.DefaultSessionFactory;
+import cc.chenzhihao.typress.core.domain.service.session.impl.JwtSessionIdGenerator;
 import cc.chenzhihao.typress.core.domain.service.session.SessionFactory;
 import cc.chenzhihao.typress.core.domain.service.session.SessionIdGenerator;
 import cc.chenzhihao.typress.core.domain.service.session.SessionService;

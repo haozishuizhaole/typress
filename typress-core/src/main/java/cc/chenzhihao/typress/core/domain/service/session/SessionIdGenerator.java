@@ -17,4 +17,12 @@ public interface SessionIdGenerator {
      */
     SessionId generate();
 
+    /**
+     * 基于会话字符串
+     *
+     * @param sessionId 会话ID字符串
+     * @return 会话ID
+     */
+    SessionId generate(String sessionId);
+
 }

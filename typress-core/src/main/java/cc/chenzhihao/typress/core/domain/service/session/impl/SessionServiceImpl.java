@@ -6,6 +6,7 @@ import cc.chenzhihao.typress.core.domain.model.entity.Session;
 import cc.chenzhihao.typress.core.domain.model.entity.User;
 import cc.chenzhihao.typress.core.domain.model.vo.session.LoginOptions;
 import cc.chenzhihao.typress.core.domain.model.vo.session.SessionData;
+import cc.chenzhihao.typress.core.domain.model.vo.session.SessionId;
 import cc.chenzhihao.typress.core.domain.repository.SessionRepository;
 import cc.chenzhihao.typress.core.domain.service.session.SessionFactory;
 import cc.chenzhihao.typress.core.domain.service.session.SessionService;
@@ -26,6 +27,15 @@ public class SessionServiceImpl implements SessionService {
     public SessionServiceImpl(SessionRepository sessionRepository, SessionFactory sessionFactory) {
         this.sessionRepository = sessionRepository;
         this.sessionFactory = sessionFactory;
+    }
+
+    @Override
+    public Session getSessionById(@NonNull SessionId sessionId) {
+        try {
+            return sessionRepository.getById(sessionId);
+        } catch (RepositoryException e) {
+            throw new RuntimeException("get session by sessionId from repository failed.", e);
+        }
     }
 
     @Override

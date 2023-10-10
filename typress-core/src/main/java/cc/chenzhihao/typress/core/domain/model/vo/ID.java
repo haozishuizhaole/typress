@@ -1,5 +1,6 @@
 package cc.chenzhihao.typress.core.domain.model.vo;
 
+import cc.chenzhihao.typress.core.domain.exception.ValidateFailedException;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
@@ -22,7 +23,7 @@ public abstract class ID<T> implements Identity<T> {
         id = generate();
     }
 
-    public ID(@NonNull T id) {
+    public ID(@NonNull T id) throws ValidateFailedException {
         validate(id);
         this.id = id;
     }
@@ -42,7 +43,7 @@ public abstract class ID<T> implements Identity<T> {
     /**
      * 验证ID合法性
      */
-    protected void validate(T id) {
+    protected void validate(T id) throws ValidateFailedException {
     }
 
     @Override
