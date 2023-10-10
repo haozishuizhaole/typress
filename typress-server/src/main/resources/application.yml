@@ -6,11 +6,13 @@ spring:
         name: "typress"
     profiles:
         active: "sqlite"
-#    datasource:
-#        driver-class-name: org.sqlite.JDBC
-#        url: jdbc:sqlite:/data/sqlite/database/typress.db
-#        username: root
-#        password: 123456
+    #    datasource:
+    #        driver-class-name: org.sqlite.JDBC
+    #        url: jdbc:sqlite:/data/sqlite/database/typress.db
+    #        username: root
+    #        password: 123456
+#    mvc:
+#        dispatch-options-request: true
 
 logging:
     config: "classpath:logback-spring.xml"
@@ -23,6 +25,27 @@ mybatis:
     mapper-locations: "classpath:/mybatis/mapper/*.xml,classpath:/mybatis/mapper/*/*.xml"
     #    mapper-base-packages: "cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.mapper"
 
+################# Typress系统配置 #################
 #typress:
 #    persistence:
 #        type: "sqlite"
+
+# Web配置
+#web:
+#    # 跨域配置
+#    cors:
+#        mappings:
+#            -   "mappingPattern": "/**"
+#                # "allowedOrigins": "*"
+#                "allowedOriginPatterns": "*"
+#                "allowedMethods": "*"
+#                "allowedHeaders": "*"
+#                "exposedHeaders": "Authorization"
+#                "allowCredentials": true
+#                "maxAge": 3600
+#    # 权限配置
+#    permission:
+#        path-patterns:
+#            - "*"
+#        exclude-path-patterns:
+#            - "*"

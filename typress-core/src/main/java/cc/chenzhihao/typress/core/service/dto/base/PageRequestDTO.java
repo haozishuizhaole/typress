@@ -22,12 +22,12 @@ public class PageRequestDTO implements Serializable {
     /**
      * 页码
      */
-    private Integer pageNo = DEFAULT_PAGE_SIZE;
+    private Integer pageNo = DEFAULT_PAGE_NO;
 
     /**
      * 每页个数
      */
-    private Integer pageSize = DEFAULT_PAGE_NO;
+    private Integer pageSize = DEFAULT_PAGE_SIZE;
 
     public final void setPageNo(Integer pageNo) {
         if (Objects.isNull(pageNo) || pageNo <= 0) {
