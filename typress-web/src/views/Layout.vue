@@ -1,11 +1,11 @@
 <template>
-  MainLayout
-  <router-view></router-view>
+    <!--MainLayout-->
+    <router-view></router-view>
 </template>
 
 <script>
 export default {
-  name: "Layout"
+    name: "Layout"
 }
 </script>
 
