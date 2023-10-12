@@ -1,10 +1,14 @@
 <template>
+  FrontLayout
   <router-view></router-view>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "FrontLayout"
+}
 </script>
 
 <style scoped>
+
 </style>
