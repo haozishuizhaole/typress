@@ -15,7 +15,12 @@
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
+    "@iconify-json/ep": "^1.1.12",
     "@vitejs/plugin-vue": "^4.3.4",
-    "vite": "^4.4.9"
+    "unplugin-auto-import": "^0.16.6",
+    "unplugin-icons": "^0.17.0",
+    "unplugin-vue-components": "^0.25.2",
+    "vite": "^4.4.9",
+    "vite-plugin-inspect": "^0.7.40"
   }
 }
