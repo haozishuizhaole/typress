@@ -2,15 +2,14 @@ package cc.chenzhihao.typress.server.configuration;
 
 import cc.chenzhihao.typress.core.domain.service.session.SessionIdGenerator;
 import cc.chenzhihao.typress.core.domain.service.session.SessionService;
-import cc.chenzhihao.typress.server.component.config.CorsConfig;
-import cc.chenzhihao.typress.server.component.config.PermissionConfig;
+import cc.chenzhihao.typress.server.component.config.WebConfig;
+import cc.chenzhihao.typress.server.component.interceptor.InitializeInterceptor;
 import cc.chenzhihao.typress.server.component.interceptor.PermissionInterceptor;
 import cc.chenzhihao.typress.server.component.interceptor.SessionInterceptor;
 import cc.chenzhihao.typress.server.component.interceptor.TraceInterceptor;
 import lombok.Data;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -30,37 +29,31 @@ import java.util.Optional;
  */
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "web")
 public class WebConfiguration implements WebMvcConfigurer {
 
     private final SessionService sessionService;
 
     private final SessionIdGenerator sessionIdGenerator;
 
-    /**
-     * 跨域配置
-     */
-    private CorsConfig cors;
+    private final WebConfig webConfig;
 
-    /**
-     * 权限配置
-     */
-    private PermissionConfig permission;
-
-    public WebConfiguration(SessionService sessionService, SessionIdGenerator sessionIdGenerator) {
+    public WebConfiguration(SessionService sessionService, SessionIdGenerator sessionIdGenerator, WebConfig webConfig) {
         this.sessionService = sessionService;
         this.sessionIdGenerator = sessionIdGenerator;
+        this.webConfig = webConfig;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        // 程序初始化拦截器
+        registry.addInterceptor(new InitializeInterceptor());
         // 请求全链路跟踪拦截器
         registry.addInterceptor(new TraceInterceptor());
         // 用户会话拦截器
         registry.addInterceptor(new SessionInterceptor(sessionService, sessionIdGenerator));
 
         // 权限拦截器
-        Optional.ofNullable(permission).ifPresent(permissionConfig -> {
+        Optional.ofNullable(webConfig.getPermission()).ifPresent(permissionConfig -> {
             if (ArrayUtils.isEmpty(permissionConfig.getPathPatterns())) {
                 return;
             }
@@ -73,7 +66,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        Optional.ofNullable(cors).ifPresent(corsConfig -> Arrays.stream(corsConfig.getMappings()).forEach(mapping -> {
+        Optional.ofNullable(webConfig.getCors()).ifPresent(corsConfig -> Arrays.stream(corsConfig.getMappings()).forEach(mapping -> {
             if (StringUtils.isBlank(mapping.getMappingPattern())) {
                 throw new RuntimeException("cors mapping pattern can not be blank");
             }

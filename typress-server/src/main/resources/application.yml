@@ -4,33 +4,32 @@ server:
 spring:
     application:
         name: "typress"
-    profiles:
-        active: "sqlite"
-    #    datasource:
-    #        driver-class-name: org.sqlite.JDBC
-    #        url: jdbc:sqlite:/data/sqlite/database/typress.db
-    #        username: root
-    #        password: 123456
-#    mvc:
-#        dispatch-options-request: true
+    datasource:
+        driver-class-name: org.sqlite.JDBC
+        url: jdbc:sqlite:${typress.data-path.database-dir}/typress.db?journal_mode=WAL
 
 logging:
-    config: "classpath:logback-spring.xml"
+    config: classpath:logback-spring.xml
     level:
         root: info
     pattern: "[%d{yyyy-MM-dd'T'HH:mm:ss.SSS}][%level][%X{trace_id}][%C:%line]:%m%n"
-    home: "${typress.data-space}/logs"
+    home: "${typress.data-path.logs-dir}"
 
 mybatis:
-    mapper-locations: "classpath:/mybatis/mapper/*.xml,classpath:/mybatis/mapper/*/*.xml"
-    #    mapper-base-packages: "cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.mapper"
+    mapper-locations: "classpath:/mybatis/mapper/sqlite/*.xml,classpath:/mybatis/mapper/sqlite/*/*.xml"
+    mapper-base-packages: "cc.chenzhihao.typress.core.infrastructure.persistence.sqlite.mapper"
 
 ################# Typress系统配置 #################
 typress:
-    data-root-dir: ""
-    data-space: "${typress.data-root-dir}/typress"
-#    persistence:
-#        type: "sqlite"
+    # 数据空间
+    data-path:
+        root-dir: "/data/${spring.application.name}"
+        database-dir: "${typress.data-path.root-dir}/database"
+        logs-dir: "${typress.data-path.root-dir}/logs"
+    
+    # 持久层配置
+    persistence:
+        type: "sqlite" # 持久层组件类型
 
 # Web配置
 #web:
@@ -48,6 +47,7 @@ typress:
 #    # 权限配置
 #    permission:
 #        path-patterns:
-#            - "*"
+#            - "/admin/**"
 #        exclude-path-patterns:
-#            - "*"
+#            - "/admin/login/**"
+#            - "/admin/logout/**"
