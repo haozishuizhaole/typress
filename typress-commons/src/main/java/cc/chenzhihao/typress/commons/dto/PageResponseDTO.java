@@ -1,0 +1,36 @@
+package cc.chenzhihao.typress.commons.dto;
+
+import lombok.Data;
+
+import java.io.Serializable;
+import java.util.List;
+
+/**
+ * 分页响应
+ *
+ * @author chenzhihao
+ * @date 2023-12-22 17:59
+ */
+@Data
+public class PageResponseDTO<T> implements Serializable {
+
+    private static final long serialVersionUID = 4492475984037557021L;
+
+    /**
+     * 总数
+     */
+    private Long total;
+
+    /**
+     * 数据
+     */
+    private List<T> list;
+
+    public PageResponseDTO() {
+    }
+
+    public PageResponseDTO(Long total, List<T> list) {
+        this.total = total;
+        this.list = list;
+    }
+}
