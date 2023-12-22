@@ -9,7 +9,14 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>typress-cache</artifactId>
+    <artifactId>typress-infras</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>typress-infras-repository</module>
+        <module>typress-infras-persistence</module>
+        <module>typress-infras-cache</module>
+        <module>typress-infras-message</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -18,11 +25,17 @@
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>cc.chenzhihao.typress</groupId>
             <artifactId>typress-core</artifactId>
         </dependency>
     </dependencies>
-
 
 </project>

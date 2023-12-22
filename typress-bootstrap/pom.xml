@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.orwg/2001/XMLSchema-instance"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
@@ -27,25 +27,26 @@
         <dependency>
             <groupId>cc.chenzhihao.typress</groupId>
             <artifactId>typress-web-server</artifactId>
-            <version>${version}</version>
         </dependency>
 
         <dependency>
             <groupId>cc.chenzhihao.typress</groupId>
-            <artifactId>typress-repository</artifactId>
-            <version>${version}</version>
+            <artifactId>typress-infras-cache</artifactId>
         </dependency>
 
         <dependency>
             <groupId>cc.chenzhihao.typress</groupId>
-            <artifactId>typress-persistence</artifactId>
-            <version>${version}</version>
+            <artifactId>typress-infras-message</artifactId>
         </dependency>
 
         <dependency>
             <groupId>cc.chenzhihao.typress</groupId>
-            <artifactId>typress-cache</artifactId>
-            <version>${version}</version>
+            <artifactId>typress-infras-persistence</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cc.chenzhihao.typress</groupId>
+            <artifactId>typress-infras-repository</artifactId>
         </dependency>
 
     </dependencies>

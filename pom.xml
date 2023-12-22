@@ -6,11 +6,9 @@
     <modules>
         <module>typress-commons</module>
         <module>typress-core</module>
-        <module>typress-persistence</module>
-        <module>typress-repository</module>
-        <module>typress-cache</module>
         <module>typress-business</module>
         <module>typress-web-server</module>
+        <module>typress-infras</module>
         <module>typress-bootstrap</module>
     </modules>
 
@@ -76,24 +74,6 @@
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
-                <artifactId>typress-repository</artifactId>
-                <version>${version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cc.chenzhihao.typress</groupId>
-                <artifactId>typress-persistence</artifactId>
-                <version>${version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cc.chenzhihao.typress</groupId>
-                <artifactId>typress-cache</artifactId>
-                <version>${version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-business</artifactId>
                 <version>${version}</version>
             </dependency>
@@ -101,6 +81,30 @@
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-web-server</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cc.chenzhihao.typress</groupId>
+                <artifactId>typress-infras-cache</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cc.chenzhihao.typress</groupId>
+                <artifactId>typress-infras-message</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cc.chenzhihao.typress</groupId>
+                <artifactId>typress-infras-persistence</artifactId>
+                <version>${version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cc.chenzhihao.typress</groupId>
+                <artifactId>typress-infras-repository</artifactId>
                 <version>${version}</version>
             </dependency>
 
