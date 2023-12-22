@@ -1,6 +1,6 @@
 package cc.chenzhihao.typress.commons.exception;
 
-import cc.chenzhihao.typress.commons.dto.IStatus;
+import cc.chenzhihao.typress.commons.model.dto.IStatus;
 import lombok.Getter;
 
 /**

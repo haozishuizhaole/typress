@@ -63,49 +63,49 @@
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-commons</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-core</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-service</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-web-server</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-infras-cache</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-infras-message</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-infras-persistence</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
                 <artifactId>typress-infras-repository</artifactId>
-                <version>${version}</version>
+                <version>${project.version}</version>
             </dependency>
 
             <dependency>

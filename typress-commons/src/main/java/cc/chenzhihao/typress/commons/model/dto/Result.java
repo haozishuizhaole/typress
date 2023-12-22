@@ -1,4 +1,4 @@
-package cc.chenzhihao.typress.commons.dto;
+package cc.chenzhihao.typress.commons.model.dto;
 
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 6765843888836259115L;
-    
+
     /**
      * 状态码
      */

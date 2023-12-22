@@ -1,4 +1,4 @@
-package cc.chenzhihao.typress.commons.component;
+package cc.chenzhihao.typress.commons.component.context;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.MDC;

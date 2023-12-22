@@ -1,4 +1,4 @@
-package cc.chenzhihao.typress.commons.dto;
+package cc.chenzhihao.typress.commons.model.dto;
 
 import lombok.Data;
 
