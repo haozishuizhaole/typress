@@ -6,7 +6,7 @@
     <modules>
         <module>typress-commons</module>
         <module>typress-core</module>
-        <module>typress-business</module>
+        <module>typress-service</module>
         <module>typress-web-server</module>
         <module>typress-infras</module>
         <module>typress-bootstrap</module>
@@ -74,7 +74,7 @@
 
             <dependency>
                 <groupId>cc.chenzhihao.typress</groupId>
-                <artifactId>typress-business</artifactId>
+                <artifactId>typress-service</artifactId>
                 <version>${version}</version>
             </dependency>
 

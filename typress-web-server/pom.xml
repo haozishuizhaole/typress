@@ -37,7 +37,7 @@
 
         <dependency>
             <groupId>cc.chenzhihao.typress</groupId>
-            <artifactId>typress-business</artifactId>
+            <artifactId>typress-service</artifactId>
         </dependency>
     </dependencies>
 
