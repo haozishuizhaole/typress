@@ -37,10 +37,58 @@ public class JSONUtilTest {
     }
 
     @Test
-    public void test_deserialize_String_Class() {
+    public void test_deserialize_String_Class_case1() {
         String json = "{\"username\":\"chenzhihao\",\"password\":\"123456\",\"age\":21}";
         User result = JSONUtil.deserialize(json, User.class);
         User target = new User(new Username("chenzhihao"), new Password("123456", false), 21);
+        Assert.assertEquals(result, target);
+    }
+
+    @Test
+    public void test_deserialize_String_Class_case2() {
+        String json = "2";
+        Integer result = JSONUtil.deserialize(json, Integer.class);
+        Integer target = 2;
+        Assert.assertEquals(result, target);
+    }
+
+    @Test
+    public void test_deserialize_String_Class_case3() {
+        String json = "2";
+        Long result = JSONUtil.deserialize(json, Long.class);
+        Long target = 2L;
+        Assert.assertEquals(result, target);
+    }
+
+    @Test
+    public void test_deserialize_String_Class_case4() {
+        String json = "2";
+        Short result = JSONUtil.deserialize(json, Short.class);
+        Short target = 2;
+        Assert.assertEquals(result, target);
+    }
+
+    @Test
+    public void test_deserialize_String_Class_case5() {
+        String json = "2";
+        Character result = JSONUtil.deserialize(json, Character.class);
+        Character target = '\2';
+        Assert.assertEquals(result, target);
+    }
+
+    @Test
+    public void test_deserialize_String_Class_case6() {
+        String json = "true";
+        Boolean result = JSONUtil.deserialize(json, Boolean.class);
+        Boolean target = true;
+        Assert.assertEquals(result, target);
+    }
+
+    @Test
+    public void test_deserialize_String_Class_case7() {
+        String json = "true";
+        String result = JSONUtil.deserialize(json, String.class);
+        String target = "true";
         Assert.assertEquals(result, target);
     }
 
@@ -49,7 +97,7 @@ public class JSONUtilTest {
         String json = "[{\"username\":\"chenzhihao\",\"password\":\"123456\",\"age\":21}]";
         List<User> result = JSONUtil.deserialize(json, new TypeReference<List<User>>() {
         });
-        List<User> target = Collections.singletonList( new User(new Username("chenzhihao"), new Password("123456", false), 21));
+        List<User> target = Collections.singletonList(new User(new Username("chenzhihao"), new Password("123456", false), 21));
         Assert.assertEquals(result, target);
     }
 
