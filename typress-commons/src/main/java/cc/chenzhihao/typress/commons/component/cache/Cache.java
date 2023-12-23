@@ -2,8 +2,6 @@ package cc.chenzhihao.typress.commons.component.cache;
 
 
 import cc.chenzhihao.typress.commons.exception.CacheException;
-import cc.chenzhihao.typress.commons.model.entity.Entity;
-import cc.chenzhihao.typress.commons.model.vo.Identity;
 
 /**
  * 缓存接口
@@ -11,7 +9,7 @@ import cc.chenzhihao.typress.commons.model.vo.Identity;
  * @author chenzhihao
  * @date 2023-10-08 15:46
  */
-public interface Cache<K extends Identity<?>, V extends Entity<K>> {
+public interface Cache<K, V> {
 
     /**
      * 设置缓存
