@@ -6,7 +6,7 @@ package cc.chenzhihao.typress.commons.exception;
  * @author chenzhihao
  * @date 2023-12-22 18:12
  */
-public class CacheException extends Exception{
+public class CacheException extends Exception {
 
     private static final long serialVersionUID = 4689476262828967355L;
 
