@@ -1,6 +1,7 @@
 package cc.chenzhihao.typress.commons.model.vo.databinder;
 
 import cc.chenzhihao.typress.commons.model.vo.Password;
+import cc.chenzhihao.typress.commons.model.vo.Timestamp;
 import cc.chenzhihao.typress.commons.model.vo.Username;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
@@ -14,6 +15,8 @@ public class CommonJsonModule extends SimpleModule {
     private final PasswordDataBinder passwordDataBinder = PasswordDataBinder.getInstance();
     private final UsernameDataBinder usernameDataBinder = UsernameDataBinder.getInstance();
 
+    private final TimestampDataBinder timestampDataBinder = TimestampDataBinder.getInstance();
+
     public CommonJsonModule() {
         addSerializer();
         addDeserializer();
@@ -22,11 +25,13 @@ public class CommonJsonModule extends SimpleModule {
     private void addSerializer() {
         addSerializer(Password.class, passwordDataBinder.getJsonSerializer());
         addSerializer(Username.class, usernameDataBinder.getJsonSerializer());
+        addSerializer(Timestamp.class, timestampDataBinder.getJsonSerializer());
     }
 
     private void addDeserializer() {
         addDeserializer(Password.class, passwordDataBinder.getJsonDeserializer());
         addDeserializer(Username.class, usernameDataBinder.getJsonDeserializer());
+        addDeserializer(Timestamp.class, timestampDataBinder.getJsonDeserializer());
     }
 
 }

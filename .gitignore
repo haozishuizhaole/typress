@@ -35,3 +35,4 @@ build/
 
 ### Local ###
 **/application-local.yml
+generatorConfig.xml

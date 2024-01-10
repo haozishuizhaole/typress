@@ -4,6 +4,9 @@ server:
 spring:
     application:
         name: "typress"
+    datasource:
+        driver-class-name: org.sqlite.JDBC
+        url: jdbc:sqlite:/data/typress/database/typress.db
 
 logging:
     config: "classpath:logback-spring.xml"
@@ -11,3 +14,6 @@ logging:
         root: info
     pattern: "[%d{yyyy-MM-dd'T'HH:mm:ss.SSS}][%level][%X{trace_id}][%C:%line]:%m%n"
     home: "/data/logs/"
+
+# Typress系统配置
+typress:

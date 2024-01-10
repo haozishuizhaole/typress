@@ -39,6 +39,17 @@ public interface Persistence<I extends Identity<?>, E extends Entity<I>, C exten
     }
 
     /**
+     * 根据唯一ID获取实体
+     *
+     * @param id 实体唯一ID
+     * @return 实体
+     * @throws PersistenceException 持久化层操作失败
+     */
+    default E getById(I id) throws PersistenceException {
+        throw new UnsupportedOperationException("not implements");
+    }
+
+    /**
      * 查找符合条件的实体
      *
      * @param condition 条件
