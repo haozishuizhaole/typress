@@ -16,10 +16,10 @@ import java.time.Duration;
  */
 @Component
 public class MemoryConfigCache extends EntityMemoryCache<ConfigKey, Config<?>> implements ConfigCache {
+    private static final Duration duration = Duration.ofHours(1);
 
     public MemoryConfigCache() {
-        // TODO @chenzhihao 2023/12/29 Config缓存过期时间可配置
-        super(Duration.ofHours(1));
+        super(duration);
     }
 
 }

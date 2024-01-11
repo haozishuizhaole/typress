@@ -1,9 +1,11 @@
 package cc.chenzhihao.typress.infras.repository.impl;
 
+import cc.chenzhihao.typress.commons.exception.CacheException;
 import cc.chenzhihao.typress.commons.exception.PersistenceException;
 import cc.chenzhihao.typress.commons.exception.RepositoryException;
 import cc.chenzhihao.typress.commons.model.vo.Timestamp;
 import cc.chenzhihao.typress.core.component.condition.ConfigCondition;
+import cc.chenzhihao.typress.core.infras.cache.ConfigCache;
 import cc.chenzhihao.typress.core.infras.persistence.ConfigPersistence;
 import cc.chenzhihao.typress.core.infras.repository.ConfigRepository;
 import cc.chenzhihao.typress.core.model.config.entity.Config;
@@ -13,6 +15,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * Config资源库实现
@@ -26,13 +30,19 @@ public class ConfigRepositoryImpl implements ConfigRepository {
     @Resource
     private ConfigPersistence configPersistence;
 
+    @Resource
+    private ConfigCache configCache;
+
+    private final Lock CACHE_LOCK = new ReentrantLock();
+
     @Override
     public void save(Config<?> entity) throws RepositoryException {
         // 新增
-        if (!contains(entity.getId())) {
+        if (!contains(entity.getConfigKey())) {
             try {
                 configPersistence.create(entity);
-            } catch (PersistenceException e) {
+                configCache.set(entity.getConfigKey(), entity);
+            } catch (PersistenceException | CacheException e) {
                 throw new RepositoryException("create config failed", e);
             }
             return;
@@ -44,17 +54,40 @@ public class ConfigRepositoryImpl implements ConfigRepository {
         entity = new Config<>(null, entity.getConfigValue(), null, new Timestamp());
         try {
             configPersistence.updateByConditionSelective(entity, condition);
-        } catch (PersistenceException e) {
+            configCache.set(entity.getConfigKey(), entity);
+        } catch (PersistenceException | CacheException e) {
             throw new RepositoryException("update config by condition selective failed", e);
         }
     }
 
     @Override
     public Config<?> getById(ConfigKey id) throws RepositoryException {
+        // 从缓存获取
+        Config<?> config;
         try {
-            return configPersistence.getById(id);
+            // TODO 此处应该使用布隆过滤器，后边优化一下
+            if (Objects.nonNull(config = configCache.get(id))) {
+                return config;
+            }
+        } catch (CacheException e) {
+            throw new RepositoryException("get config by id from cache failed", e);
+        }
+
+        // 加锁进行读库更新缓存。只放行一个现成进行该操作，其余线程全部返回null
+        if (!CACHE_LOCK.tryLock()) {
+            return null;
+        }
+
+        // 查库更新缓存
+        try {
+            if (Objects.nonNull(config = configPersistence.getById(id))) {
+                configCache.set(config.getConfigKey(), config);
+            }
+            return config;
         } catch (PersistenceException e) {
             throw new RepositoryException("get config by id failed", e);
+        } catch (CacheException e) {
+            throw new RepositoryException("set config to cache failed", e);
         }
     }
 
