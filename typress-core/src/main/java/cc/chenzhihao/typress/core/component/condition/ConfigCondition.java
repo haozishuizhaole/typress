@@ -2,7 +2,7 @@ package cc.chenzhihao.typress.core.component.condition;
 
 import cc.chenzhihao.typress.commons.component.condition.Condition;
 import cc.chenzhihao.typress.commons.model.vo.Timestamp;
-import cc.chenzhihao.typress.core.model.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
 
 import java.util.ArrayList;
 import java.util.List;

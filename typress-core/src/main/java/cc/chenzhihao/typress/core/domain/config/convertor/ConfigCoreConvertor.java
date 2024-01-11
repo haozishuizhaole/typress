@@ -1,7 +1,7 @@
-package cc.chenzhihao.typress.core.convertor;
+package cc.chenzhihao.typress.core.domain.config.convertor;
 
 import cc.chenzhihao.typress.commons.convertor.BaseConvertor;
-import cc.chenzhihao.typress.core.model.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
 import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.Named;

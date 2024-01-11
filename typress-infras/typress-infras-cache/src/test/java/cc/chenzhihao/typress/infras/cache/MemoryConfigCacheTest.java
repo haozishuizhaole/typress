@@ -1,8 +1,8 @@
 package cc.chenzhihao.typress.infras.cache;
 
 import cc.chenzhihao.typress.commons.exception.CacheException;
-import cc.chenzhihao.typress.core.model.config.entity.Config;
-import cc.chenzhihao.typress.core.model.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.domain.config.entity.Config;
+import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
 import org.junit.Assert;
 import org.junit.Test;
 

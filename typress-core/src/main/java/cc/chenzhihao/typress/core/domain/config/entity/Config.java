@@ -1,8 +1,8 @@
-package cc.chenzhihao.typress.core.model.config.entity;
+package cc.chenzhihao.typress.core.domain.config.entity;
 
 import cc.chenzhihao.typress.commons.model.entity.Entity;
 import cc.chenzhihao.typress.commons.model.vo.Timestamp;
-import cc.chenzhihao.typress.core.model.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package cc.chenzhihao.typress.core.model.config.vo;
+package cc.chenzhihao.typress.core.domain.config.vo;
 
 import cc.chenzhihao.typress.commons.model.vo.Identity;
 import lombok.Getter;

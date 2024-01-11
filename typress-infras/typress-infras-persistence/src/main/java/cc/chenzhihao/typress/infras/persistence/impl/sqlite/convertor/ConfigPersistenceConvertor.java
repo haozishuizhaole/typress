@@ -2,9 +2,9 @@ package cc.chenzhihao.typress.infras.persistence.impl.sqlite.convertor;
 
 import cc.chenzhihao.typress.commons.component.condition.Pageable;
 import cc.chenzhihao.typress.core.component.condition.ConfigCondition;
-import cc.chenzhihao.typress.core.convertor.ConfigCoreConvertor;
-import cc.chenzhihao.typress.core.model.config.entity.Config;
-import cc.chenzhihao.typress.core.model.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.domain.config.convertor.ConfigCoreConvertor;
+import cc.chenzhihao.typress.core.domain.config.entity.Config;
+import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
 import cc.chenzhihao.typress.infras.persistence.impl.sqlite.example.ConfigPOExample;
 import cc.chenzhihao.typress.infras.persistence.impl.sqlite.example.ext.ConfigPOExtExample;
 import cc.chenzhihao.typress.infras.persistence.impl.sqlite.pos.ConfigPO;

@@ -2,8 +2,8 @@ package cc.chenzhihao.typress.infras.cache;
 
 import cc.chenzhihao.typress.commons.component.cache.EntityMemoryCache;
 import cc.chenzhihao.typress.core.infras.cache.ConfigCache;
-import cc.chenzhihao.typress.core.model.config.entity.Config;
-import cc.chenzhihao.typress.core.model.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.domain.config.entity.Config;
+import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;

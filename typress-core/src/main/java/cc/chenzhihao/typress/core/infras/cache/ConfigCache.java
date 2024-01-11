@@ -1,8 +1,8 @@
 package cc.chenzhihao.typress.core.infras.cache;
 
 import cc.chenzhihao.typress.commons.component.cache.Cache;
-import cc.chenzhihao.typress.core.model.config.entity.Config;
-import cc.chenzhihao.typress.core.model.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.domain.config.entity.Config;
+import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
 
 /**
  * 配置 缓存

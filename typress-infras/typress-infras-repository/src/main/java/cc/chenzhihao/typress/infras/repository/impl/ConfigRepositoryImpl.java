@@ -5,11 +5,12 @@ import cc.chenzhihao.typress.commons.exception.PersistenceException;
 import cc.chenzhihao.typress.commons.exception.RepositoryException;
 import cc.chenzhihao.typress.commons.model.vo.Timestamp;
 import cc.chenzhihao.typress.core.component.condition.ConfigCondition;
+import cc.chenzhihao.typress.core.domain.config.entity.Config;
+import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.domain.config.vo.SiteInfoConfigValue;
 import cc.chenzhihao.typress.core.infras.cache.ConfigCache;
 import cc.chenzhihao.typress.core.infras.persistence.ConfigPersistence;
 import cc.chenzhihao.typress.core.infras.repository.ConfigRepository;
-import cc.chenzhihao.typress.core.model.config.entity.Config;
-import cc.chenzhihao.typress.core.model.config.vo.ConfigKey;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -111,6 +112,27 @@ public class ConfigRepositoryImpl implements ConfigRepository {
             return configPersistence.findByCondition(condition);
         } catch (PersistenceException e) {
             throw new RepositoryException("get by condition failed", e);
+        }
+    }
+
+    @Override
+    public SiteInfoConfigValue getSiteInfo() throws RepositoryException {
+        return getConfigValueByIdAndCastToTargetType(ConfigKey.SITE_INFO, SiteInfoConfigValue.class);
+    }
+
+    private <T> T getConfigValueByIdAndCastToTargetType(ConfigKey id, Class<T> targetType) throws RepositoryException {
+        Config<?> config;
+        if (Objects.isNull(config = getById(id))) {
+            return null;
+        }
+
+        try {
+            return targetType.cast(config.getConfigValue());
+        } catch (ClassCastException e) {
+            throw new RepositoryException(String.format(
+                    "cast config value to target type failed. configValue type is %s, target type is %s",
+                    config.getConfigValue().getClass().getName(), targetType.getName()
+            ), e);
         }
     }
 }
