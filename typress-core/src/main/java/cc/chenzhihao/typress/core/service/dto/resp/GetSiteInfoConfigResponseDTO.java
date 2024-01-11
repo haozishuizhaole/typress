@@ -9,7 +9,7 @@ import lombok.Data;
  * @date 2024-01-11 16:21
  */
 @Data
-public class GetSiteConfigResponseDTO {
+public class GetSiteInfoConfigResponseDTO {
 
     /**
      * 站点名称

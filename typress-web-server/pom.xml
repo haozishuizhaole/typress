@@ -18,7 +18,6 @@
     </properties>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -37,8 +36,9 @@
 
         <dependency>
             <groupId>cc.chenzhihao.typress</groupId>
-            <artifactId>typress-service</artifactId>
+            <artifactId>typress-core</artifactId>
         </dependency>
+
     </dependencies>
 
 

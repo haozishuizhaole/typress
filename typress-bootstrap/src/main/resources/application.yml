@@ -7,6 +7,11 @@ spring:
     datasource:
         driver-class-name: org.sqlite.JDBC
         url: jdbc:sqlite:/data/typress/database/typress.db
+    mvc:
+        throw-exception-if-no-handler-found: true
+    web:
+      resources:
+          add-mappings: false
 
 logging:
     config: "classpath:logback-spring.xml"

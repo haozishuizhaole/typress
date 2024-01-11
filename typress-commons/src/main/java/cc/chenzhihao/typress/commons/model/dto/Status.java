@@ -23,6 +23,7 @@ public enum Status implements IStatus {
     AUTHENTICATION_FAILED("A0300", "authentication failed"),
     UN_SUPPORTED_AUTHENTICATE_CERTIFICATE_TYPE("A0301", "un supported authenticate certificate type"),
     CERTIFICATE_VALIDATE_FAILED("A0302", "certificate validate failed"),
+    RESOURCE_NOT_FOUND_ERROR("A0400", "resource not found"), // 资源未找到
 
     /**
      * 服务端错误

@@ -1,5 +1,6 @@
 package cc.chenzhihao.typress.commons.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import org.apache.commons.lang3.StringUtils;
 
@@ -35,6 +36,7 @@ public class Result<T> implements Serializable {
         this.data = data;
     }
 
+    @JsonIgnore
     public boolean isSuccess() {
         return StringUtils.equals(Status.SUCCESS.getCode(), this.code);
     }

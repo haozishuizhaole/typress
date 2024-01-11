@@ -5,7 +5,7 @@ import cc.chenzhihao.typress.commons.exception.ServiceException;
 import cc.chenzhihao.typress.core.domain.config.vo.SiteInfoConfigValue;
 import cc.chenzhihao.typress.core.infras.repository.ConfigRepository;
 import cc.chenzhihao.typress.core.service.convertor.ConfigServiceConvertor;
-import cc.chenzhihao.typress.core.service.dto.resp.GetSiteConfigResponseDTO;
+import cc.chenzhihao.typress.core.service.dto.resp.GetSiteInfoConfigResponseDTO;
 import cc.chenzhihao.typress.core.service.usecase.ConfigUseCase;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class ConfigUseCaseImpl implements ConfigUseCase {
     private ConfigRepository configRepository;
 
     @Override
-    public GetSiteConfigResponseDTO getSiteConfig() throws ServiceException {
+    public GetSiteInfoConfigResponseDTO getSiteInfoConfig() throws ServiceException {
         // 获取配置值
         SiteInfoConfigValue configValue;
         try {
@@ -37,6 +37,6 @@ public class ConfigUseCaseImpl implements ConfigUseCase {
         }
 
         // 结果转换
-        return ConfigServiceConvertor.convertSiteInfoConfigValueToGetSiteConfigResponseDTO(configValue);
+        return ConfigServiceConvertor.convertSiteInfoConfigValueToGetSiteInfoConfigResponseDTO(configValue);
     }
 }

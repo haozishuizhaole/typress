@@ -1,7 +1,7 @@
 package cc.chenzhihao.typress.core.service.usecase;
 
 import cc.chenzhihao.typress.commons.exception.ServiceException;
-import cc.chenzhihao.typress.core.service.dto.resp.GetSiteConfigResponseDTO;
+import cc.chenzhihao.typress.core.service.dto.resp.GetSiteInfoConfigResponseDTO;
 
 /**
  * Config用例
@@ -14,6 +14,6 @@ public interface ConfigUseCase {
     /**
      * 获取站点配置
      */
-    GetSiteConfigResponseDTO getSiteConfig() throws ServiceException;
+    GetSiteInfoConfigResponseDTO getSiteInfoConfig() throws ServiceException;
 
 }
