@@ -20,4 +20,8 @@ public interface ConfigRepository extends Repository<ConfigKey, Config<?>, Confi
      */
     SiteInfoConfigValue getSiteInfo() throws RepositoryException;
 
+    /**
+     * 设置站点信息
+     */
+    void setSiteInfo(SiteInfoConfigValue configValue) throws RepositoryException;
 }

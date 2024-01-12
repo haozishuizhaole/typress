@@ -120,6 +120,11 @@ public class ConfigRepositoryImpl implements ConfigRepository {
         return getConfigValueByIdAndCastToTargetType(ConfigKey.SITE_INFO, SiteInfoConfigValue.class);
     }
 
+    @Override
+    public void setSiteInfo(SiteInfoConfigValue configValue) throws RepositoryException {
+        save(new Config<>(ConfigKey.SITE_INFO, configValue, new Timestamp(), new Timestamp()));
+    }
+
     private <T> T getConfigValueByIdAndCastToTargetType(ConfigKey id, Class<T> targetType) throws RepositoryException {
         Config<?> config;
         if (Objects.isNull(config = getById(id))) {

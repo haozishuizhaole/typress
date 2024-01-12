@@ -26,13 +26,13 @@ public class ValidateUtil {
      * <p>
      * 优先使用Springboot Validation进行参数校验，若无异常且对象实现了{@link Verifiable}接口，则调用 {@link Verifiable#validate()} 方法进行验证
      *
-     * @param status 校验失败时的状态码
-     * @param obj    被验证对象
      * @param <T>    被验证对象类型
+     * @param obj    被验证对象
+     * @param status 校验失败时的状态码
      * @param groups 指定要验证的分组列表
      * @throws ValidateFailedException 校验失败抛出异常
      */
-    public static <T> void validate(IStatus status, T obj, Class<?>... groups) {
+    public static <T> void validate(T obj, IStatus status, Class<?>... groups) throws ValidateFailedException {
         Set<ConstraintViolation<T>> validateResult = FACTORY.getValidator().validate(obj, groups);
         List<String> errMessages = validateResult.stream().map(ConstraintViolation::getMessage).collect(Collectors.toList());
         if (CollectionUtils.isNotEmpty(errMessages)) {

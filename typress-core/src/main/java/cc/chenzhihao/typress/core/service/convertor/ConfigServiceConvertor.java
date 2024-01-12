@@ -2,6 +2,7 @@ package cc.chenzhihao.typress.core.service.convertor;
 
 import cc.chenzhihao.typress.core.domain.config.convertor.ConfigCoreConvertor;
 import cc.chenzhihao.typress.core.domain.config.vo.SiteInfoConfigValue;
+import cc.chenzhihao.typress.core.service.dto.req.SetSiteInfoConfigRequestDTO;
 import cc.chenzhihao.typress.core.service.dto.resp.GetSiteInfoConfigResponseDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValueCheckStrategy;
@@ -25,9 +26,18 @@ public class ConfigServiceConvertor {
         return MAPPER.convertSiteInfoConfigValueToGetSiteConfigResponseDTO(source);
     }
 
+    /**
+     * SetSiteInfoConfigRequestDTO -> SiteInfoConfigValue
+     */
+    public static SiteInfoConfigValue convertSetSiteInfoConfigRequestDTOToSiteInfoConfigValue(SetSiteInfoConfigRequestDTO source) {
+        return MAPPER.convertSetSiteInfoConfigRequestDTOToSiteInfoConfigValue(source);
+    }
+
     @Mapper(nullValueCheckStrategy = NullValueCheckStrategy.ALWAYS)
     interface ConfigMapper extends ConfigCoreConvertor {
 
         GetSiteInfoConfigResponseDTO convertSiteInfoConfigValueToGetSiteConfigResponseDTO(SiteInfoConfigValue source);
+
+        SiteInfoConfigValue convertSetSiteInfoConfigRequestDTOToSiteInfoConfigValue(SetSiteInfoConfigRequestDTO source);
     }
 }

@@ -1,6 +1,7 @@
 package cc.chenzhihao.typress.web.api.admin;
 
 import cc.chenzhihao.typress.commons.model.dto.Result;
+import cc.chenzhihao.typress.core.service.dto.req.SetSiteInfoConfigRequestDTO;
 import cc.chenzhihao.typress.core.service.dto.resp.GetSiteInfoConfigResponseDTO;
 
 /**
@@ -16,4 +17,8 @@ public interface ConfigApi {
      */
     Result<GetSiteInfoConfigResponseDTO> getSiteInfo() throws Exception;
 
+    /**
+     * 设置站点信息
+     */
+    Result<?> setSiteInfo(SetSiteInfoConfigRequestDTO req) throws Exception;
 }

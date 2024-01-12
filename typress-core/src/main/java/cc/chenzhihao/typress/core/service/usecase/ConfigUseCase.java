@@ -1,6 +1,7 @@
 package cc.chenzhihao.typress.core.service.usecase;
 
 import cc.chenzhihao.typress.commons.exception.ServiceException;
+import cc.chenzhihao.typress.core.service.dto.req.SetSiteInfoConfigRequestDTO;
 import cc.chenzhihao.typress.core.service.dto.resp.GetSiteInfoConfigResponseDTO;
 
 /**
@@ -16,4 +17,8 @@ public interface ConfigUseCase {
      */
     GetSiteInfoConfigResponseDTO getSiteInfoConfig() throws ServiceException;
 
+    /**
+     * 设置站点信息
+     */
+    void setSiteInfoConfig(SetSiteInfoConfigRequestDTO req) throws ServiceException;
 }
