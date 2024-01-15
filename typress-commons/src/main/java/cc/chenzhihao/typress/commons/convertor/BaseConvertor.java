@@ -1,5 +1,6 @@
 package cc.chenzhihao.typress.commons.convertor;
 
+import cc.chenzhihao.typress.commons.model.vo.MarkdownText;
 import cc.chenzhihao.typress.commons.model.vo.Timestamp;
 import cc.chenzhihao.typress.commons.util.JSONUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -60,4 +61,47 @@ public interface BaseConvertor {
         return new Timestamp(source);
     }
 
+    /**
+     * MarkdownText -> origin(String)
+     */
+    @Named("convertMarkdownTextToOriginalString")
+    default String convertMarkdownTextToOriginalString(MarkdownText source) {
+        if (Objects.isNull(source)) {
+            return null;
+        }
+        return source.getOriginalText();
+    }
+
+    /**
+     * MarkdownText -> rendered(String)
+     */
+    @Named("convertMarkdownTextToRenderedString")
+    default String convertMarkdownTextToRenderedString(MarkdownText source) {
+        if (Objects.isNull(source)) {
+            return null;
+        }
+        return source.getRenderedText();
+    }
+
+    /**
+     * origin(String) -> MarkdownText
+     */
+    @Named("convertOriginalStringToMarkdownText")
+    default MarkdownText convertOriginalStringToMarkdownText(String originalString) {
+        if (Objects.isNull(originalString)) {
+            return null;
+        }
+        return new MarkdownText(originalString);
+    }
+
+    /**
+     * (origin(String) + rendered(String)) -> MarkdownText
+     */
+    @Named("convertOriginalAndRenderedStringToMarkdownText")
+    default MarkdownText convertOriginalAndRenderedStringToMarkdownText(String originalString, String renderedString) {
+        if (Objects.isNull(originalString) && Objects.isNull(renderedString)) {
+            return null;
+        }
+        return new MarkdownText(originalString, renderedString);
+    }
 }
