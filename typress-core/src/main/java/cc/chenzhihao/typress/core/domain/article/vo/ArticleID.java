@@ -24,6 +24,6 @@ public class ArticleID extends ID<Long> {
 
     @Override
     protected Long generate() {
-        return Instant.now().getEpochSecond();
+        return Instant.now().toEpochMilli();
     }
 }
