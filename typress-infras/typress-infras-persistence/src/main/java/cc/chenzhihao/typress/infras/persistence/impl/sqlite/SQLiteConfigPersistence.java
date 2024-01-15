@@ -2,11 +2,10 @@ package cc.chenzhihao.typress.infras.persistence.impl.sqlite;
 
 import cc.chenzhihao.typress.commons.exception.PersistenceException;
 import cc.chenzhihao.typress.core.component.condition.ConfigCondition;
-import cc.chenzhihao.typress.core.infras.persistence.ConfigPersistence;
 import cc.chenzhihao.typress.core.domain.config.entity.Config;
 import cc.chenzhihao.typress.core.domain.config.vo.ConfigKey;
+import cc.chenzhihao.typress.core.infras.persistence.ConfigPersistence;
 import cc.chenzhihao.typress.infras.persistence.impl.sqlite.convertor.ConfigPersistenceConvertor;
-import cc.chenzhihao.typress.infras.persistence.impl.sqlite.example.ConfigPOExample;
 import cc.chenzhihao.typress.infras.persistence.impl.sqlite.example.ext.ConfigPOExtExample;
 import cc.chenzhihao.typress.infras.persistence.impl.sqlite.mappers.ext.ConfigPOExtMapper;
 import cc.chenzhihao.typress.infras.persistence.impl.sqlite.pos.ConfigPO;
@@ -41,7 +40,7 @@ public class SQLiteConfigPersistence implements ConfigPersistence {
     @Override
     public int updateByConditionSelective(Config<?> entityData, ConfigCondition condition) throws PersistenceException {
         ConfigPO data = ConfigPersistenceConvertor.convertConfigToConfigPO(entityData);
-        ConfigPOExample example = ConfigPersistenceConvertor.convertConfigConditionToConfigPOExample(condition);
+        ConfigPOExtExample example = ConfigPersistenceConvertor.convertConfigConditionToConfigPOExtExample(condition);
         try {
             return mapper.updateByExampleSelective(data, example);
         } catch (Exception e) {

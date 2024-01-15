@@ -24,7 +24,7 @@ public class Article implements Entity<ArticleID> {
     /**
      * 文章ID
      */
-    private ArticleID articleID;
+    private ArticleID articleId;
 
     /**
      * 文章标题
