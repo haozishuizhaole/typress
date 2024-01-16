@@ -89,6 +89,8 @@ public class ConfigRepositoryImpl implements ConfigRepository {
             throw new RepositoryException("get config by id failed", e);
         } catch (CacheException e) {
             throw new RepositoryException("set config to cache failed", e);
+        } finally {
+            CACHE_LOCK.unlock();
         }
     }
 

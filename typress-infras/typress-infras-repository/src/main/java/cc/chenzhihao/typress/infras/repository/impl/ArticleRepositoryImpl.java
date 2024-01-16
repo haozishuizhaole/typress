@@ -88,6 +88,8 @@ public class ArticleRepositoryImpl extends ArticleRepository {
             throw new RepositoryException("get article by id failed", e);
         } catch (CacheException e) {
             throw new RepositoryException("set article to cache failed", e);
+        }finally {
+            CACHE_LOCK.unlock();
         }
     }
 
