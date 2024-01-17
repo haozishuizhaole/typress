@@ -4,7 +4,7 @@ import cc.chenzhihao.typress.commons.model.dto.Result;
 import cc.chenzhihao.typress.core.service.dto.req.SetSiteInfoConfigRequestDTO;
 import cc.chenzhihao.typress.core.service.dto.resp.GetSiteInfoConfigResponseDTO;
 import cc.chenzhihao.typress.core.service.usecase.ConfigUseCase;
-import cc.chenzhihao.typress.web.api.admin.ConfigApi;
+import cc.chenzhihao.typress.web.api.admin.ConfigAdminApi;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +20,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("/admin/config")
-public class ConfigApiController implements ConfigApi {
+public class ConfigAdminApiController implements ConfigAdminApi {
 
     @Resource
     private ConfigUseCase configUseCase;

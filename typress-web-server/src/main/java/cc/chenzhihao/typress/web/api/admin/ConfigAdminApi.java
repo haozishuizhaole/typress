@@ -10,7 +10,7 @@ import cc.chenzhihao.typress.core.service.dto.resp.GetSiteInfoConfigResponseDTO;
  * @author chenzhihao
  * @date 2024-01-11 17:37
  */
-public interface ConfigApi {
+public interface ConfigAdminApi {
 
     /**
      * 获取站点信息

@@ -1,6 +1,7 @@
 package cc.chenzhihao.typress.core.domain.article.vo;
 
 import cc.chenzhihao.typress.commons.model.vo.ID;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.NonNull;
 
 import java.time.Instant;
@@ -25,5 +26,10 @@ public class ArticleID extends ID<Long> {
     @Override
     protected Long generate() {
         return Instant.now().toEpochMilli();
+    }
+
+    @JsonIgnore
+    public String getStringID() {
+        return String.valueOf(getId());
     }
 }

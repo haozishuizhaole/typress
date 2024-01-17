@@ -18,9 +18,50 @@ import java.util.Objects;
 public interface BaseConvertor {
 
     /**
+     * Object -> Json(String)
+     */
+    String convertObjectToJsonString = "convertObjectToJsonString";
+
+    /**
+     * Json(String) -> Object
+     */
+    String convertJsonStringToObject = "convertJsonStringToObject";
+
+    /**
+     * Timestamp -> Long
+     */
+    String convertTimestampToLong = "convertTimestampToLong";
+
+    /**
+     * Long -> Timestamp
+     */
+    String convertLongToTimestamp = "convertLongToTimestamp";
+
+    /**
+     * MarkdownText -> original(String)
+     */
+    String convertMarkdownTextToOriginalString = "convertMarkdownTextToOriginalString";
+
+    /**
+     * MarkdownText -> Rendered(String)
+     */
+    String convertMarkdownTextToRenderedString = "convertMarkdownTextToRenderedString";
+
+    /**
+     * original(String) -> MarkdownText
+     */
+    String convertOriginalStringToMarkdownText = "convertOriginalStringToMarkdownText";
+
+    /**
+     * original(String) + Rendered(String) -> MarkdownText
+     */
+    String convertOriginalAndRenderedStringToMarkdownText = "convertOriginalAndRenderedStringToMarkdownText";
+
+
+    /**
      * Object -> String(json)
      */
-    @Named("convertObjectToJsonString")
+    @Named(convertObjectToJsonString)
     default String convertObjectToJsonString(Object source) {
         if (Objects.isNull(source)) {
             return null;
@@ -31,7 +72,7 @@ public interface BaseConvertor {
     /**
      * String(json) -> Object
      */
-    @Named("convertJsonStringToObject")
+    @Named(convertJsonStringToObject)
     default <T> T convertJsonStringToObject(String source, @Context Class<T> clazz) {
         if (StringUtils.isBlank(source) || Objects.isNull(clazz)) {
             return null;
@@ -42,7 +83,7 @@ public interface BaseConvertor {
     /**
      * Timestamp -> Long
      */
-    @Named("convertTimestampToLong")
+    @Named(convertTimestampToLong)
     default Long convertTimestampToLong(Timestamp source) {
         if (Objects.isNull(source)) {
             return null;
@@ -53,7 +94,7 @@ public interface BaseConvertor {
     /**
      * Long -> Timestamp
      */
-    @Named("convertLongToTimestamp")
+    @Named(convertLongToTimestamp)
     default Timestamp convertLongToTimestamp(Long source) {
         if (Objects.isNull(source)) {
             return null;
@@ -64,7 +105,7 @@ public interface BaseConvertor {
     /**
      * MarkdownText -> origin(String)
      */
-    @Named("convertMarkdownTextToOriginalString")
+    @Named(convertMarkdownTextToOriginalString)
     default String convertMarkdownTextToOriginalString(MarkdownText source) {
         if (Objects.isNull(source)) {
             return null;
@@ -75,7 +116,7 @@ public interface BaseConvertor {
     /**
      * MarkdownText -> rendered(String)
      */
-    @Named("convertMarkdownTextToRenderedString")
+    @Named(convertMarkdownTextToRenderedString)
     default String convertMarkdownTextToRenderedString(MarkdownText source) {
         if (Objects.isNull(source)) {
             return null;
@@ -86,7 +127,7 @@ public interface BaseConvertor {
     /**
      * origin(String) -> MarkdownText
      */
-    @Named("convertOriginalStringToMarkdownText")
+    @Named(convertOriginalStringToMarkdownText)
     default MarkdownText convertOriginalStringToMarkdownText(String originalString) {
         if (Objects.isNull(originalString)) {
             return null;
@@ -97,7 +138,7 @@ public interface BaseConvertor {
     /**
      * (origin(String) + rendered(String)) -> MarkdownText
      */
-    @Named("convertOriginalAndRenderedStringToMarkdownText")
+    @Named(convertOriginalAndRenderedStringToMarkdownText)
     default MarkdownText convertOriginalAndRenderedStringToMarkdownText(String originalString, String renderedString) {
         if (Objects.isNull(originalString) && Objects.isNull(renderedString)) {
             return null;

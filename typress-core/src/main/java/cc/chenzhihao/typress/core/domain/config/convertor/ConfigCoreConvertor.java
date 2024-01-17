@@ -20,7 +20,17 @@ public interface ConfigCoreConvertor extends BaseConvertor {
     /**
      * ConfigKey -> String
      */
-    @Named("convertConfigKeyToString")
+    String convertConfigKeyToString = "convertConfigKeyToString";
+
+    /**
+     * String -> ConfigKey
+     */
+    String convertStringToConfigKey = "convertStringToConfigKey";
+
+    /**
+     * ConfigKey -> String
+     */
+    @Named(convertConfigKeyToString)
     default String convertConfigNameToString(ConfigKey source) {
         if (Objects.isNull(source)) {
             return null;
@@ -31,7 +41,7 @@ public interface ConfigCoreConvertor extends BaseConvertor {
     /**
      * String -> ConfigKey
      */
-    @Named("convertStringToConfigKey")
+    @Named(convertStringToConfigKey)
     default ConfigKey convertStringToConfigKey(String source) {
         if (StringUtils.isBlank(source)) {
             return null;

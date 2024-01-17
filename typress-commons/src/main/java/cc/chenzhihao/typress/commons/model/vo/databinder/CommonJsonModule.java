@@ -17,6 +17,8 @@ public class CommonJsonModule extends SimpleModule {
 
     private final TimestampDataBinder timestampDataBinder = TimestampDataBinder.getInstance();
 
+    private final LongDataBinder longDataBinder = LongDataBinder.getInstance();
+
     public CommonJsonModule() {
         addSerializer();
         addDeserializer();
@@ -26,12 +28,14 @@ public class CommonJsonModule extends SimpleModule {
         addSerializer(Password.class, passwordDataBinder.getJsonSerializer());
         addSerializer(Username.class, usernameDataBinder.getJsonSerializer());
         addSerializer(Timestamp.class, timestampDataBinder.getJsonSerializer());
+        addSerializer(Long.class, longDataBinder.getJsonSerializer());
     }
 
     private void addDeserializer() {
         addDeserializer(Password.class, passwordDataBinder.getJsonDeserializer());
         addDeserializer(Username.class, usernameDataBinder.getJsonDeserializer());
         addDeserializer(Timestamp.class, timestampDataBinder.getJsonDeserializer());
+        addDeserializer(Long.class, longDataBinder.getJsonDeserializer());
     }
 
 }

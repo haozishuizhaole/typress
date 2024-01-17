@@ -2,9 +2,11 @@ package cc.chenzhihao.typress.commons.model.vo.databinder;
 
 import cc.chenzhihao.typress.commons.model.vo.Timestamp;
 import cc.chenzhihao.typress.commons.util.JSONUtil;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import java.util.Objects;
 
 /**
  * @author chenzhihao
@@ -54,5 +56,24 @@ public class TimestampDataBinderTest {
         }
         Demo demo = new Demo(new Timestamp(12345678654L));
         System.out.println(JSONUtil.serialize(demo));
+    }
+
+    @Data
+    @EqualsAndHashCode
+    static class Demo {
+        Long timestamp;
+    }
+    @Test
+    public void serialize_case4() {
+
+        Demo demo = new Demo();
+        demo.setTimestamp(1705394319074L);
+        System.out.println(JSONUtil.serialize(demo));
+
+        String json = "{\"timestamp\":\"1705394319074\"}";
+        Demo demo1 = JSONUtil.deserialize(json, Demo.class);
+        System.out.println(demo1);
+        assert Objects.equals(demo1, demo);
+
     }
 }

@@ -19,7 +19,17 @@ public interface ArticleCoreConvertor extends BaseConvertor {
     /**
      * ArticleID -> Long
      */
-    @Named("convertArticleIDToLong")
+    String convertArticleIDToLong = "convertArticleIDToLong";
+
+    /**
+     * Long -> ArticleID
+     */
+    String convertLongToArticleID = "convertLongToArticleID";
+
+    /**
+     * ArticleID -> Long
+     */
+    @Named(convertArticleIDToLong)
     default Long convertArticleIDToLong(ArticleID source) {
         if (Objects.isNull(source)) {
             return null;
@@ -30,7 +40,7 @@ public interface ArticleCoreConvertor extends BaseConvertor {
     /**
      * Long -> ArticleID
      */
-    @Named("convertLongToArticleID")
+    @Named(convertLongToArticleID)
     default ArticleID convertLongToArticleID(Long source) {
         if (Objects.isNull(source)) {
             return null;

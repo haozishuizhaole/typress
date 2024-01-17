@@ -116,10 +116,10 @@ public class ConfigPersistenceConvertor {
 
         @Mappings({
                 @Mapping(target = "id", ignore = true),
-                @Mapping(target = "configKey", qualifiedByName = "convertConfigKeyToString"),
-                @Mapping(target = "configValue", qualifiedByName = "convertObjectToJsonString"),
-                @Mapping(target = "createTime", qualifiedByName = "convertTimestampToLong"),
-                @Mapping(target = "updateTime", qualifiedByName = "convertTimestampToLong"),
+                @Mapping(target = "configKey", qualifiedByName = convertConfigKeyToString),
+                @Mapping(target = "configValue", qualifiedByName = convertObjectToJsonString),
+                @Mapping(target = "createTime", qualifiedByName = convertTimestampToLong),
+                @Mapping(target = "updateTime", qualifiedByName = convertTimestampToLong),
         })
         ConfigPO convertConfigToConfigPO(Config<?> source);
 
